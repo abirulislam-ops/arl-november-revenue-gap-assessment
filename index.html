@@ -1,0 +1,1057 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>ARL SBU Revenue Performance &amp; Recovery Command Centre — November 2026</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#eef2f8;--panel:#ffffff;--ink:#0f1b2d;--ink2:#2c3e57;--muted:#64758f;--line:#dde5f0;
+  --navy:#0b1a2c;--navy2:#122a45;--blue:#1a4fd6;--blue-soft:#e8eefc;
+  --amber:#e0a11b;--amber-soft:#fdf3dd;--green:#0f8f66;--green-soft:#e5f6ef;
+  --red:#cf3f3f;--red-soft:#fbe9e9;--violet:#6b46c1;--orange:#e06c1b;
+  --r:14px;--sh:0 1px 2px rgba(16,30,54,.05),0 10px 28px -16px rgba(16,30,54,.28);
+}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"Segoe UI Variable Text","Segoe UI",Inter,system-ui,-apple-system,Arial,sans-serif;font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;font-weight:650;letter-spacing:-.01em}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+a{color:var(--blue)}
+
+/* ---------- header ---------- */
+.topbar{background:linear-gradient(135deg,#0b1a2c 0%,#122a45 55%,#17395c 100%);color:#fff;padding:16px 22px;display:flex;gap:18px;align-items:center;flex-wrap:nowrap;border-bottom:3px solid var(--amber)}
+@media(max-width:1000px){.topbar{flex-wrap:wrap}}
+.mark{width:52px;height:52px;border-radius:12px;background:var(--amber);color:#0b1a2c;display:grid;place-items:center;font-weight:800;font-size:15px;letter-spacing:.5px;flex:none}
+.brandline{font-size:11px;letter-spacing:.18em;font-weight:700;color:#9fb6d4}
+.brandsub{font-size:11px;color:#7d95b5;margin-top:2px}
+.titlewrap{flex:1 1 auto;min-width:0}
+.titlewrap h1{font-size:20px;line-height:1.2;letter-spacing:-.02em}
+.titlewrap .meta{font-size:12px;color:#9fb6d4;margin-top:5px}
+.clock{text-align:right;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:11px;padding:9px 14px;min-width:210px;margin-left:auto}
+.clk-label{font-size:10px;letter-spacing:.14em;color:#9fb6d4;font-weight:700}
+.clk-val{font-size:16px;font-weight:700;margin-top:2px;color:#ffd479}
+.clk-sub{font-size:11px;color:#9fb6d4;margin-top:1px}
+
+/* ---------- toolbar ---------- */
+.toolbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:0 18px;display:flex;align-items:center;gap:10px;flex-wrap:nowrap}
+@media(max-width:1080px){.toolbar{flex-wrap:wrap;padding:6px 18px}}
+.tabs{display:flex;gap:2px;overflow-x:auto;flex:1 1 auto;min-width:0;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{border:0;background:transparent;padding:14px 13px 12px;font:inherit;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+.tools{display:flex;gap:8px;align-items:center;padding:8px 0}
+.seg{display:flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#f7f9fc}
+.seg button{border:0;background:transparent;font:inherit;font-size:11.5px;font-weight:600;color:var(--muted);padding:6px 9px;cursor:pointer}
+.seg button.on{background:var(--navy);color:#fff}
+.btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 12px;font:inherit;font-size:12px;font-weight:600;color:var(--ink2);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{border-color:#b9c7db;background:#f7f9fc}
+.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+.btn.primary:hover{background:#1542b5}
+.btn.ghost{background:transparent}
+
+/* ---------- layout ---------- */
+main{padding:22px;max-width:1720px;margin:0 auto}
+.view{display:none}
+.view.active{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:16px 18px;margin-bottom:16px}
+.card>h3{font-size:14px;display:flex;align-items:center;gap:8px;margin-bottom:2px}
+.card .hint{font-size:12px;color:var(--muted);margin:2px 0 12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:1080px){.grid2,.grid3{grid-template-columns:1fr}}
+
+/* ---------- kpi ---------- */
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:16px}
+@media(max-width:1400px){.kpis{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:720px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:13px 14px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.kpi::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue)}
+.kpi.k2::after{background:var(--violet)}.kpi.k3::after{background:var(--green)}
+.kpi.k4::after{background:var(--amber)}.kpi.k5::after{background:var(--red)}.kpi.k6::after{background:#0e7c9b}
+.kpi .lbl{font-size:10.5px;letter-spacing:.1em;font-weight:700;color:var(--muted);text-transform:uppercase}
+.kpi .val{font-size:20px;font-weight:700;margin:6px 0 2px;letter-spacing:-.02em}
+.kpi .sub{font-size:11.5px;color:var(--muted)}
+.kpi .sub b{color:var(--ink2)}
+.minibar{height:5px;border-radius:3px;background:#e8edf5;margin-top:8px;overflow:hidden}
+.minibar>i{display:block;height:100%;border-radius:3px}
+
+/* ---------- banner ---------- */
+.banner{display:flex;gap:16px;align-items:center;background:linear-gradient(100deg,#0b1a2c,#1b3c5e);color:#fff;border-radius:var(--r);padding:14px 18px;margin-bottom:16px;box-shadow:var(--sh);flex-wrap:wrap}
+.banner .big{font-size:17px;font-weight:700}
+.banner .big span{color:#ffd479}
+.banner .sep{width:1px;height:34px;background:rgba(255,255,255,.18)}
+.banner .cell{font-size:12px;color:#c3d3e8}
+.banner .cell b{display:block;font-size:15px;color:#fff;margin-top:1px}
+
+/* ---------- bars ---------- */
+.hbar{display:grid;grid-template-columns:190px 1fr 130px;gap:10px;align-items:center;margin-bottom:8px;font-size:12.5px}
+.hbar .lbl{color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hbar .track{height:18px;background:#eef2f8;border-radius:5px;overflow:hidden;position:relative}
+.hbar .fill{height:100%;border-radius:5px}
+.hbar .val{text-align:right;font-weight:600}
+.stack{display:flex;height:34px;border-radius:8px;overflow:hidden;margin:6px 0 12px}
+.stack>div{display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff;min-width:2px}
+.legend{display:grid;gap:6px;font-size:12.5px}
+.legend .row{display:grid;grid-template-columns:12px 1fr auto auto;gap:8px;align-items:center}
+.dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+.legend .muted{color:var(--muted)}
+
+/* ---------- chips ---------- */
+.chip{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:2px 9px;font-size:11px;font-weight:650;white-space:nowrap;border:1px solid transparent}
+.chip.good{background:var(--green-soft);color:#0a6b4c;border-color:#bfe6d7}
+.chip.warn{background:var(--amber-soft);color:#8a5c05;border-color:#f0dcae}
+.chip.bad{background:var(--red-soft);color:#9d2b2b;border-color:#f2c9c9}
+.chip.info{background:var(--blue-soft);color:#173d9e;border-color:#c9d7f8}
+.chip.grey{background:#f0f3f8;color:#5d6f8a;border-color:#e2e8f1}
+.chip.sm{font-size:10px;padding:1px 7px}
+
+/* ---------- tables ---------- */
+.tablewrap{overflow:auto;max-height:none;border:1px solid var(--line);border-radius:11px}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:12.5px}
+#tbl{font-size:12px}
+#tbl tbody td{padding:7px 8px}
+#tbl thead th{padding:8px 8px}
+thead th{position:sticky;top:0;z-index:3;background:#f4f7fc;color:var(--muted);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;padding:9px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none}
+thead th:first-child,tbody td:first-child{text-align:center}
+thead th.l,tbody td.l{text-align:left}
+thead th:hover{color:var(--ink)}
+tbody td{padding:8px 10px;text-align:right;border-bottom:1px solid #eef2f8;white-space:nowrap;vertical-align:middle}
+tbody tr:hover td{background:#f7faff}
+tbody tr.tot td{background:#f4f7fc;font-weight:700;border-top:2px solid var(--line);position:sticky;bottom:0}
+.sbu-cell{display:flex;gap:9px;align-items:center;min-width:230px}
+.rank{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-weight:700;font-size:11.5px;background:#eef2f8;color:var(--ink2);flex:none}
+.rank.r1{background:#f6c344;color:#4a3400}.rank.r2{background:#c9d3e0;color:#33455c}.rank.r3{background:#e3b184;color:#4d2c11}
+.sbu-name{font-weight:600;color:var(--ink);display:block;line-height:1.25;white-space:normal}
+.sbu-sub{font-size:10.5px;color:var(--muted);display:block;margin-top:1px}
+.code{font-size:10px;font-weight:700;letter-spacing:.04em;color:#7b8ca6;background:#f0f4fa;border:1px solid #e3eaf4;padding:0 5px;border-radius:4px}
+.achvwrap{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+.achvbar{width:66px;height:6px;background:#eef2f8;border-radius:3px;overflow:hidden;flex:none}
+.achvbar>i{display:block;height:100%;border-radius:3px}
+.neg{color:var(--red)}
+.pos{color:var(--green)}
+.dim{color:var(--muted)}
+
+/* ---------- dept cards ---------- */
+.dept-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
+@media(max-width:1300px){.dept-grid{grid-template-columns:repeat(2,1fr)}}
+.dept{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:14px;border-top:4px solid var(--blue)}
+.dept h4{font-size:13.5px;display:flex;justify-content:space-between;align-items:center}
+.dept .cnt{font-size:11px;color:#fff;background:var(--blue);border-radius:999px;padding:1px 8px;font-weight:700}
+.dept .amt{font-size:16px;font-weight:700;margin:8px 0 2px}
+.dept .amtlbl{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.dept ul{margin:10px 0 0;padding-left:16px;font-size:11.5px;color:var(--muted);line-height:1.5}
+.dept.d-mkt{border-top-color:#6b46c1}.dept.d-mkt .cnt{background:#6b46c1}
+.dept.d-sales{border-top-color:#1a4fd6}.dept.d-sales .cnt{background:#1a4fd6}
+.dept.d-ops{border-top-color:#e06c1b}.dept.d-ops .cnt{background:#e06c1b}
+.dept.d-sc{border-top-color:#0f8f66}.dept.d-sc .cnt{background:#0f8f66}
+.dept.d-oth{border-top-color:#64758f}.dept.d-oth .cnt{background:#64758f}
+
+/* ---------- inputs ---------- */
+input[type=text],input[type=number],select,textarea{font:inherit;font-size:12.5px;color:var(--ink);border:1px solid #d8e2ef;background:#fbfcfe;border-radius:7px;padding:5px 8px;width:100%}
+input:focus,select:focus,textarea:focus{outline:2px solid #c9d7f8;border-color:var(--blue);background:#fff}
+.cell-inp{min-width:110px}
+.wide-inp{min-width:195px}
+.tbl-input td{padding:5px 6px}
+.st{font-size:11px;padding:3px 6px;border-radius:6px;font-weight:600}
+.st-0{background:#f0f3f8;color:#5d6f8a;border:1px solid #e2e8f1}
+.st-1{background:var(--amber-soft);color:#8a5c05;border:1px solid #f0dcae}
+.st-2{background:var(--green-soft);color:#0a6b4c;border:1px solid #bfe6d7}
+.st-3{background:var(--red-soft);color:#9d2b2b;border:1px solid #f2c9c9}
+
+.toolbar-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.toolbar-row .grow{flex:1}
+.fchip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer}
+.fchip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.progline{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
+.progline .track{flex:1;height:8px;background:#eef2f8;border-radius:4px;overflow:hidden;max-width:280px}
+.progline .fill{height:100%;background:var(--green);border-radius:4px}
+
+/* ---------- insight ---------- */
+.insight{background:linear-gradient(180deg,#fff,#f7faff);border-left:4px solid var(--blue)}
+.insight ul{margin:8px 0 0;padding-left:20px;font-size:13px}
+.insight li{margin-bottom:7px;color:var(--ink2)}
+.insight li b{color:var(--ink)}
+.callout{background:var(--amber-soft);border:1px solid #f0dcae;border-radius:10px;padding:10px 13px;font-size:12.5px;color:#7a5204;margin-top:12px}
+
+/* ---------- mail ---------- */
+.mailbox{background:#fff;border:1px solid var(--line);border-radius:12px;font-family:"Segoe UI",Arial,sans-serif;font-size:13px}
+.mailhead{padding:12px 16px;border-bottom:1px solid var(--line);background:#f7f9fc;border-radius:12px 12px 0 0;font-size:12.5px}
+.mailhead div{margin-bottom:3px}
+.mailhead b{color:var(--muted);font-weight:600;display:inline-block;min-width:62px}
+pre.mailbody{margin:0;padding:16px 18px;white-space:pre-wrap;word-wrap:break-word;font-family:"Segoe UI",Arial,sans-serif;font-size:13px;line-height:1.55;color:var(--ink2)}
+
+/* ---------- gap assessment ---------- */
+.gap-select-row{display:flex;align-items:center;gap:12px;margin:4px 0 16px;flex-wrap:wrap}
+.gap-select-row label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+#sbuSelect{flex:1 1 320px;max-width:560px;font-size:13.5px;font-weight:600;padding:9px 12px;color:var(--ink);border:1px solid #d8e2ef;background:#fbfcfe;border-radius:8px;cursor:pointer}
+#sbuSelect:focus{outline:2px solid #c9d7f8;border-color:var(--blue);background:#fff}
+.gap-status{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600}
+.gap-head{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start;justify-content:space-between}
+.gap-head h3{margin:0}
+.gap-head .who{color:var(--muted);font-size:12.5px;margin-top:5px}
+.metric-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:14px 0}
+@media(max-width:1080px){.metric-strip{grid-template-columns:repeat(2,1fr)}}
+.metric{background:#f7f9fc;border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+.metric .l{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.metric .v{font-size:17px;font-weight:700;margin-top:4px}
+.gap-block{margin:16px 0}
+.gap-block h4{font-size:13.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px}
+.gap-block .num-badge{background:var(--blue);color:#fff;border-radius:6px;font-size:11px;font-weight:700;padding:1px 8px}
+.gap-block ul{margin:0;padding:0;list-style:none}
+.gap-block li{display:flex;gap:9px;align-items:flex-start;padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:#fff;margin-bottom:7px;font-size:12.5px;color:var(--ink2);line-height:1.45}
+.gap-block li .bul{flex:none;color:var(--blue);font-weight:700;min-width:16px}
+.gap-block li .body{flex:1}
+.gap-block li .chip{margin-left:5px}
+.gap-close{margin-top:6px}
+.pending-note{background:#fff;border:1.5px dashed var(--line);border-radius:12px;padding:34px 20px;text-align:center;color:var(--muted);margin-top:14px}
+.gap-img{margin:14px 0;border:1px solid var(--line);border-radius:10px;padding:10px;background:#f7f9fc}
+.gap-img img{max-width:100%;border-radius:8px;display:block}
+.gap-img .tiny{margin-top:6px}
+
+footer{padding:16px 24px 34px;color:var(--muted);font-size:11.5px;text-align:center}
+footer b{color:var(--ink2)}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:10px 18px;border-radius:10px;font-size:12.5px;font-weight:600;opacity:0;pointer-events:none;transition:.25s;z-index:99;box-shadow:0 12px 30px -10px rgba(0,0,0,.4)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.split{height:1px;background:var(--line);margin:12px 0}
+.tiny{font-size:11px;color:var(--muted)}
+.kv{display:grid;grid-template-columns:1fr auto;gap:6px 12px;font-size:12.5px}
+.kv div:nth-child(odd){color:var(--muted)}
+@media print{
+  .toolbar,.toast,.btn,.fchip,.seg{display:none!important}
+  body{background:#fff}
+  .view{display:block!important;page-break-inside:avoid}
+  .card{box-shadow:none;border-color:#ccc}
+  .topbar{background:#0b1a2c!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="mark">AKIJ</div>
+  <div class="brandline-wrap" style="flex:none">
+    <div class="brandline">AKIJ RESOURCE LIMITED</div>
+    <div class="brandsub">Strategic Planning &amp; Analysis · Marketing P&amp;L</div>
+  </div>
+  <div class="titlewrap">
+    <h1>SBU Revenue Performance &amp; Recovery Command Centre</h1>
+    <div class="meta">Period <b>01–22 November 2026</b> · Base: November 2026 Budget · All amounts in <b>BDT</b></div>
+  </div>
+  <div class="clock">
+    <div class="clk-label">CUSTODIAN SUBMISSION DUE</div>
+    <div class="clk-val" id="clkVal">Today · 12:00 PM</div>
+    <div class="clk-sub" id="clkSub">23 November 2026</div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-v="overview">Overview</button>
+    <button class="tab" data-v="board">SBU Leaderboard</button>
+    <button class="tab" data-v="gap">Gap Assessment</button>
+  </nav>
+  <div class="tools">
+    <div class="seg" id="unitSeg">
+      <button data-u="bdt" class="on">BDT</button>
+      <button data-u="cr">৳ Cr</button>
+      <button data-u="mn">৳ Mn</button>
+    </div>
+    <button class="btn" id="btnPrint">Print / PDF</button>
+    <button class="btn primary" id="btnCsv">Export</button>
+  </div>
+</div>
+
+<main>
+
+<!-- ================= OVERVIEW ================= -->
+<section class="view active" id="v-overview">
+  <div class="kpis" id="kpiRow"></div>
+  <div class="banner" id="banner"></div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Gap decomposition — where the shortfall actually sits</h3>
+      <div class="hint">The distance between Budget and Actual splits into two very different problems: what was given up while forecasting, and what was lost in execution.</div>
+      <div id="gapDecomp"></div>
+    </div>
+    <div class="card">
+      <h3>Achievement distribution across 33 SBU lines</h3>
+      <div class="hint">Achievement measured against the November budget (full month).</div>
+      <div class="stack" id="distStack"></div>
+      <div class="legend" id="distLegend"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Largest revenue gaps — Pareto of the month</h3>
+    <div class="hint">Projected full-month revenue (run-rate 01–22 Nov extended to 30 days) compared with budget. Bars show the gap each SBU is carrying.</div>
+    <div id="pareto"></div>
+    <div class="callout" id="paretoNote"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Top revenue performers</h3>
+      <div class="hint">Ranked by achievement against budget.</div>
+      <div id="topList"></div>
+    </div>
+    <div class="card">
+      <h3>Critical — needs attention before month-end</h3>
+      <div class="hint">Lowest achievement with material revenue at stake.</div>
+      <div id="riskList"></div>
+    </div>
+  </div>
+
+  <div class="card insight">
+    <h3>What the numbers are telling us</h3>
+    <ul id="findings"></ul>
+  </div>
+
+  <div class="card">
+    <h3>How to read this dashboard</h3>
+    <div class="grid3 tiny" style="line-height:1.6">
+      <div><b>Achievement vs Budget</b><br>Actual revenue (01–22 Nov) ÷ full-month November budget. This is the primary lens of this dashboard. Because only 22 of 30 days have elapsed, a 73.3% reading at month end would equal budget.</div>
+      <div><b>Achievement vs Forecast</b><br>The percentage printed on the source Excel (Actual ÷ Revised Forecast). Useful for judging execution against the committed plan, but it flatters any SBU whose forecast was cut.</div>
+      <div><b>Gap &amp; run-rate</b><br>Required daily run-rate = (Budget − Actual) ÷ 8 remaining days, compared with the run-rate achieved so far. Anything above 1.5× is arithmetically out of reach.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LEADERBOARD ================= -->
+<section class="view" id="v-board">
+  <div class="card">
+    <h3>SBU leaderboard — sorted by revenue achievement</h3>
+    <div class="hint">Top revenue-achieving SBUs appear first. Click any column header to re-sort, or use the filters to isolate the problem set.</div>
+    <div class="toolbar-row">
+      <input type="text" id="q" placeholder="Search SBU, code or SBU head…" style="max-width:320px">
+      <select id="sortBy" style="max-width:230px">
+        <option value="achv">Sort: Achievement vs budget (high → low)</option>
+        <option value="gap">Sort: Revenue gap, BDT (high → low)</option>
+        <option value="act">Sort: Actual revenue (high → low)</option>
+        <option value="bud">Sort: Budget size (high → low)</option>
+        <option value="coll">Sort: Collection achievement (high → low)</option>
+      </select>
+      <div class="grow"></div>
+      <div id="filters" style="display:flex;gap:6px;flex-wrap:wrap">
+        <button class="fchip on" data-f="all">All 33</button>
+        <button class="fchip" data-f="above">Above target</button>
+        <button class="fchip" data-f="risk">At risk &lt;50%</button>
+        <button class="fchip" data-f="plan">Plan cut / nil</button>
+        <button class="fchip" data-f="coll">Collection risk</button>
+      </div>
+    </div>
+    <div class="tablewrap">
+      <table id="tbl">
+        <thead>
+          <tr>
+            <th data-k="rank">#</th>
+            <th class="l" data-k="name">SBU / Responsible Head</th>
+            <th data-k="bud">Budget</th>
+            <th data-k="fc">Forecast</th>
+            <th data-k="act">Actual 01–22</th>
+            <th data-k="achv">Achv vs Budget</th>
+            <th data-k="gap">Gap to Budget</th>
+            <th data-k="projachv">Proj. Achv</th>
+            <th data-k="rr">Run-rate Needed</th>
+            <th data-k="coll">Collection</th>
+            <th data-k="rec">Receivable</th>
+            <th class="l">Screening Driver</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <div class="tiny" style="margin-top:10px">Run-rate Needed = budget still to be billed ÷ 8 remaining days, expressed as a multiple of the run-rate achieved in the first 22 days. &nbsp;·&nbsp; Receivable is as of 22/11/2026 per customer ledger.</div>
+  </div>
+</section>
+
+<!-- ================= GAP ASSESSMENT ================= -->
+<section class="view" id="v-gap">
+  <div class="card">
+    <h3>SBU Gap Assessment — custodian submissions</h3>
+    <div class="hint">Brand custodians were asked to reply with three points per SBU: (1) reason for the gap and the responsible department, (2) initiatives already taken, and (3) the next 8-day Marketing action plan. Choose an SBU from the dropdown to view its submission.</div>
+    <div class="gap-select-row">
+      <label for="sbuSelect">Select SBU</label>
+      <select id="sbuSelect"></select>
+      <span class="gap-status" id="gapStatus"></span>
+    </div>
+    <div id="gapPanel"></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <b>ARL SBU Revenue Performance &amp; Recovery Command Centre</b> · prepared by Strategic Planning &amp; Analysis · source: <i>SBU wise Revenue performance summary Based on Budget for the month of November-2026.xlsx</i><br>
+  <span id="footNote"></span>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const DATA = {"meta": {"daysElapsed": 22, "daysInMonth": 30, "daysLeft": 8, "foot": "Source file: SBU wise Revenue performance summary Based on Budget for the month of November-2026 (actuals 01–22 Nov 2026). Data notes: three lines share the ABSL code (Asphalt, Lube-Oil, Bitumen); G2G has no SBU code; two Akij Commodities lines (Cotton, Fruits) carry a nil budget; service SBUs have no volumetric plan, so only value achievement is used. Prepared 23 Nov 2026, 10:54."}, "totals": {"bud": 17063315030.0, "fc": 11919167795.0, "act": 8604985500.0, "proj": 11734071136.363636, "ctarget": 10465438208.0, "cact": 5792684294.0, "rec": 23777368677.0, "achvBud": 0.5042974055669182, "achvFc": 0.7219451599305218, "projAchv": 0.6876782803185247, "cachv": 0.5535061388611469, "curDaily": 391135704.54545456, "reqDaily": 1057291191.25, "mult": 2.7031313658227547, "gapToBudget": 8458329530.0}, "rows": [{"sl": 1, "code": "", "name": "G2G (Bongo & MTS & Shipping BADC/BCIC)", "head": "Mohammad Bahauddin", "uom": "Service", "bq": 172000.0, "fq": 172000.0, "aq": null, "bud": 1319805000.0, "fc": 1466450000.0, "act": 679354082.0, "ctarget": 1000000000.0, "cact": 186868000.0, "rec": 5374409500.0, "aq_raw": null, "achvBud": 0.5147382242073639, "achvFc": 0.4632644017866276, "proj": 926391930.0, "projAchv": 0.701915760282769, "gap": 393413070.0, "openGap": 640450918.0, "cachv": 0.186868, "curDaily": 30879731.0, "reqDaily": 80056364.75, "rrMult": 2.592521442301424, "recDays": 174.04327453500161, "qa": null, "va": 0.4632644017866276, "chips": [{"label": "Tracking behind", "dept": "Sales", "tone": "warn"}, {"label": "Collection risk", "dept": "Sales", "tone": "warn"}]}, {"sl": 2, "code": "ACCL", "name": "Akij Cement Company Ltd.", "head": "Shaibal Shaha", "uom": "M.Ton", "bq": 175000.0, "fq": 170000.0, "aq": 83686.0, "bud": 1897000000.0, "fc": 1910800000.0, "act": 916675041.0, "ctarget": 1897000000.0, "cact": 1161889120.0, "rec": 1697294737.0, "aq_raw": 83686.0, "achvBud": 0.4832235324196099, "achvFc": 0.47973364088339965, "proj": 1250011419.5454545, "projAchv": 0.6589411805721953, "gap": 646988580.4545455, "openGap": 980324959.0, "cachv": 0.6124876752767527, "curDaily": 41667047.31818182, "reqDaily": 122540619.875, "rrMult": 2.94094800956842, "recDays": 40.73470155057925, "qa": 0.4922705882352941, "va": 0.47973364088339965, "chips": [{"label": "Volume shortfall", "dept": "Sales", "tone": "warn"}]}, {"sl": 3, "code": "AIL", "name": "Akij Ispat Ltd.", "head": "Shaibal Shaha", "uom": "M.Ton", "bq": 14000.0, "fq": 14000.0, "aq": 8133.0, "bud": 1349013300.0, "fc": 1253000000.0, "act": 713207900.0, "ctarget": 1260000000.0, "cact": 817357777.0, "rec": 1640165567.0, "aq_raw": 8133.0, "achvBud": 0.5286885607428777, "achvFc": 0.5692002394253791, "proj": 972556227.2727273, "projAchv": 0.7209389464675606, "gap": 376457072.72727275, "openGap": 635805400.0, "cachv": 0.6486966484126984, "curDaily": 32418540.90909091, "reqDaily": 79475675.0, "rrMult": 2.451550031905143, "recDays": 50.593441931868675, "qa": 0.5809285714285715, "va": 0.5692002394253791, "chips": [{"label": "Tracking", "dept": "—", "tone": "info"}]}, {"sl": 4, "code": "APFIL", "name": "Akij Poly Fibre Industries Ltd.", "head": "Badrul Haque", "uom": "PCS", "bq": 7400000.0, "fq": 7400000.0, "aq": 2948183.0, "bud": 212362000.0, "fc": 212362000.0, "act": 104536313.0, "ctarget": 212700000.0, "cact": 111625563.0, "rec": 546892643.0, "aq_raw": 2948183.0, "achvBud": 0.49225526694983096, "achvFc": 0.49225526694983096, "proj": 142549517.72727272, "projAchv": 0.6712571822043149, "gap": 69812482.27272728, "openGap": 107825687.0, "cachv": 0.5248028349788434, "curDaily": 4751650.590909091, "reqDaily": 13478210.875, "rrMult": 2.836532404294764, "recDays": 115.09529847298134, "qa": 0.3984031081081081, "va": 0.49225526694983096, "chips": [{"label": "Volume shortfall", "dept": "Sales", "tone": "warn"}]}, {"sl": 5, "code": "ARMCL", "name": "Akij Ready Mix Concrete Ltd.", "head": "Anisur Rahman", "uom": "CFT", "bq": 1330000.0, "fq": 1250000.0, "aq": 711584.0, "bud": 492736942.0, "fc": 468750000.0, "act": 268929638.0, "ctarget": 470000000.0, "cact": 291437389.0, "rec": 608513252.0, "aq_raw": 711584.0, "achvBud": 0.5457874477777638, "achvFc": 0.5737165610666667, "proj": 366722233.6363636, "projAchv": 0.7442556106060414, "gap": 126014708.36363637, "openGap": 223807304.0, "cachv": 0.6200795510638298, "curDaily": 12224074.454545455, "reqDaily": 27975913.0, "rrMult": 2.2885915088317637, "recDays": 49.77990393160013, "qa": 0.5692672, "va": 0.5737165610666667, "chips": [{"label": "Tracking", "dept": "—", "tone": "info"}]}, {"sl": 6, "code": "ABSL", "name": "Akij Building Solutions-Asphalt", "head": "Anisur Rahman", "uom": "M.Ton", "bq": 18180.0, "fq": 5000.0, "aq": null, "bud": 232710000.0, "fc": 59000000.0, "act": 7677823.0, "ctarget": 80000000.0, "cact": 19839861.0, "rec": 58378499.0, "aq_raw": null, "achvBud": 0.03299309440935069, "achvFc": 0.130132593220339, "proj": 10469758.636363637, "projAchv": 0.04499058328547822, "gap": 222240241.36363637, "openGap": 225032177.0, "cachv": 0.2479982625, "curDaily": 348991.95454545453, "reqDaily": 28129022.125, "rrMult": 80.60077534347953, "recDays": 167.2774923308339, "qa": null, "va": 0.130132593220339, "chips": [{"label": "Plan cut pre-month", "dept": "Planning", "tone": "bad"}, {"label": "Collection risk", "dept": "Sales", "tone": "warn"}]}, {"sl": 7, "code": "ABSL", "name": "Akij Building-Lube-Oil", "head": "Md. Ehtesamul Haq", "uom": "Ltr", "bq": 46956.0, "fq": 21406.0, "aq": null, "bud": 27419473.0, "fc": 12718721.0, "act": 14982104.0, "ctarget": 13000000.0, "cact": 13470924.0, "rec": 31027971.0, "aq_raw": null, "achvBud": 0.5464037912034269, "achvFc": 1.1779568087074164, "proj": 20430141.81818182, "projAchv": 0.745096078913764, "gap": 6989331.18181818, "openGap": 12437369.0, "cachv": 1.0362249230769232, "curDaily": 681004.7272727273, "reqDaily": 1554671.125, "rrMult": 2.2829079780783794, "recDays": 45.562049362359254, "qa": null, "va": 1.1779568087074164, "chips": [{"label": "Tracking behind", "dept": "Sales", "tone": "warn"}]}, {"sl": 8, "code": "", "name": "Akij Building Solutions-Bitumen", "head": "Md. Ehtesamul Haq", "uom": "Ltr", "bq": 3409.0, "fq": 0.0, "aq": null, "bud": 268500000.0, "fc": 0.0, "act": 0.0, "ctarget": 0.0, "cact": 0.0, "rec": 1725314.0, "aq_raw": null, "achvBud": 0.0, "achvFc": null, "proj": 0.0, "projAchv": 0.0, "gap": 268500000.0, "openGap": 268500000.0, "cachv": null, "curDaily": 0.0, "reqDaily": null, "rrMult": null, "recDays": null, "qa": null, "va": null, "chips": [{"label": "No plan – nil billing", "dept": "Supply Chain", "tone": "bad"}]}, {"sl": 9, "code": "AEL", "name": "Akij Essentials Ltd.(Manufacruring)", "head": "MD Akterrul Alam Shah", "uom": "M.Ton", "bq": 30011.0, "fq": 25042.0, "aq": 19048.0, "bud": 1721818163.0, "fc": 1436740000.0, "act": 1045234803.0, "ctarget": 1350760001.0, "cact": 855900035.0, "rec": 439095584.0, "aq_raw": 19048.0, "achvBud": 0.6070529545227012, "achvFc": 0.7275044914180715, "proj": 1425320185.909091, "projAchv": 0.8277994834400472, "gap": 296497977.090909, "openGap": 676583360.0, "cachv": 0.633643307742572, "curDaily": 47510672.86363637, "reqDaily": 84572920.0, "rrMult": 1.7800825562445417, "recDays": 9.24204094646856, "qa": 0.760642121236323, "va": 0.7275044914180715, "chips": [{"label": "Tracking", "dept": "—", "tone": "info"}]}, {"sl": 10, "code": "", "name": "Akij Essentials Ltd.(Export)", "head": "Md. Abdul Awal", "uom": "M.Ton", "bq": 183.0, "fq": 122.0, "aq": 256.0, "bud": 30104918.0, "fc": 25000000.0, "act": 670097.0, "ctarget": 20000000.0, "cact": 5104604.0, "rec": 72564609.0, "aq_raw": 256.0, "achvBud": 0.022258721980242563, "achvFc": 0.02680388, "proj": 913768.6363636364, "projAchv": 0.030352802700330767, "gap": 29191149.363636363, "openGap": 29434821.0, "cachv": 0.2552302, "curDaily": 30458.954545454544, "reqDaily": 3679352.625, "rrMult": 120.79707527417673, "recDays": 2382.3735936737517, "qa": 2.098360655737705, "va": 0.02680388, "chips": [{"label": "Price / mix dilution", "dept": "Marketing", "tone": "warn"}, {"label": "Collection risk", "dept": "Sales", "tone": "warn"}]}, {"sl": 11, "code": "", "name": "Akij Essentials Ltd.(Trading)", "head": "Biju Biswas", "uom": "M.Ton", "bq": 68000.0, "fq": 0.0, "aq": 0.0, "bud": 2789230975.0, "fc": 12381029.0, "act": 11143600.0, "ctarget": 74200000.0, "cact": 46149850.0, "rec": 45986920.0, "aq_raw": 0.0, "achvBud": 0.0039952230919133545, "achvFc": 0.9000544300477771, "proj": 15195818.181818182, "projAchv": 0.005448031488972756, "gap": 2774035156.818182, "openGap": 2778087375.0, "cachv": 0.6219656334231806, "curDaily": 506527.2727272727, "reqDaily": 347260921.875, "rrMult": 685.5720127472272, "recDays": 90.78863562941959, "qa": null, "va": 0.9000544300477771, "chips": [{"label": "Plan cut pre-month", "dept": "Planning", "tone": "bad"}]}, {"sl": 12, "code": "BTL", "name": "Bongo & Daily (Coal)", "head": "Biju Biswas", "uom": "M.Ton", "bq": 60000.0, "fq": 0.0, "aq": null, "bud": 1136567000.0, "fc": 0.0, "act": 508067.0, "ctarget": 73322000.0, "cact": 14395021.0, "rec": 384136255.0, "aq_raw": null, "achvBud": 0.0004470189614866524, "achvFc": null, "proj": 692818.6363636364, "projAchv": 0.0006095713111181623, "gap": 1135874181.3636363, "openGap": 1136058933.0, "cachv": 0.1963260822127056, "curDaily": 23093.954545454544, "reqDaily": 142007366.625, "rrMult": 6149.114321044272, "recDays": 16633.628261626913, "qa": null, "va": null, "chips": [{"label": "Plan cut pre-month", "dept": "Planning", "tone": "bad"}, {"label": "Collection risk", "dept": "Sales", "tone": "warn"}]}, {"sl": 13, "code": "ACL", "name": "Akij Commodities Ltd. (Cotton)", "head": "Bidhan Chandra Pramanik", "uom": "M.Ton", "bq": 0.0, "fq": 0.0, "aq": 16472.0, "bud": 0.0, "fc": 82360861.0, "act": 82360861.0, "ctarget": 0.0, "cact": 3022625.0, "rec": 0.0, "aq_raw": 16472.0, "achvBud": null, "achvFc": 1.0, "proj": 112310265.0, "projAchv": null, "gap": -112310265.0, "openGap": -82360861.0, "cachv": null, "curDaily": 3743675.5, "reqDaily": -10295107.625, "rrMult": -2.75, "recDays": 0.0, "qa": null, "va": 1.0, "chips": [{"label": "Off-budget revenue", "dept": "Planning", "tone": "info"}]}, {"sl": 14, "code": "ACL", "name": "Akij Commodities Ltd. (F&B)", "head": "Md. Imran Hossain", "uom": "Carton", "bq": 0.0, "fq": 2000.0, "aq": 1952.0, "bud": 32463550.0, "fc": 12000000.0, "act": 9760225.0, "ctarget": 15000000.0, "cact": 9173555.0, "rec": 26109684.0, "aq_raw": 1952.0, "achvBud": 0.30065180795076324, "achvFc": 0.8133520833333333, "proj": 13309397.727272727, "projAchv": 0.40997973811467714, "gap": 19154152.272727273, "openGap": 22703325.0, "cachv": 0.6115703333333333, "curDaily": 443646.5909090909, "reqDaily": 2837915.625, "rrMult": 6.3967934909287445, "recDays": 58.852439159957896, "qa": 0.976, "va": 0.8133520833333333, "chips": [{"label": "Price / mix dilution", "dept": "Marketing", "tone": "warn"}]}, {"sl": 15, "code": "", "name": "Akij Commodities Ltd. (Fruits)", "head": "Md. Imranul Haque", "uom": "Carton", "bq": 0.0, "fq": 0.0, "aq": 1.0, "bud": 0.0, "fc": 0.0, "act": 7014.0, "ctarget": 3000000.0, "cact": 1968686.0, "rec": 103126056.0, "aq_raw": 1.0, "achvBud": null, "achvFc": null, "proj": 9564.545454545454, "projAchv": null, "gap": -9564.545454545454, "openGap": -7014.0, "cachv": 0.6562286666666667, "curDaily": 318.8181818181818, "reqDaily": -876.75, "rrMult": -2.75, "recDays": 323463.5346449957, "qa": null, "va": null, "chips": [{"label": "Off-budget revenue", "dept": "Planning", "tone": "info"}]}, {"sl": 16, "code": "ASLL", "name": "Akij Shipping Line Ltd. (ASLL)", "head": "MD Rasel Uddin Ahmed", "uom": "Service", "bq": null, "fq": null, "aq": null, "bud": 2924602500.0, "fc": 2924602500.0, "act": 3424580469.0, "ctarget": 2047221726.0, "cact": 731599524.0, "rec": 10969894842.0, "aq_raw": null, "achvBud": 1.1709558714389392, "achvFc": 1.1709558714389392, "proj": 4669882457.727273, "projAchv": 1.5967580065076443, "gap": -1745279957.727273, "openGap": -499977969.0, "cachv": 0.357362133621671, "curDaily": 155662748.5909091, "reqDaily": -62497246.125, "rrMult": -0.40149134388758906, "recDays": 70.47219030437097, "qa": null, "va": 1.1709558714389392, "chips": [{"label": "Above target", "dept": "—", "tone": "good"}, {"label": "Collection risk", "dept": "Sales", "tone": "warn"}]}, {"sl": 17, "code": "ALEL", "name": "Akij Light Engineering Ltd.", "head": "Masud Al Amin Razib", "uom": "PCS", "bq": null, "fq": null, "aq": 0.0, "bud": 261318403.0, "fc": 273861434.0, "act": 156436839.0, "ctarget": 258100000.0, "cact": 147291964.0, "rec": 293723700.0, "aq_raw": 0.0, "achvBud": 0.5986445547044003, "achvFc": 0.5712262464820074, "proj": 213322962.27272728, "projAchv": 0.8163334836878186, "gap": 47995440.72727272, "openGap": 104881564.0, "cachv": 0.5706778922898101, "curDaily": 7110765.409090909, "reqDaily": 13110195.5, "rrMult": 1.8437108729868927, "recDays": 41.306903420619484, "qa": null, "va": 0.5712262464820074, "chips": [{"label": "Tracking behind", "dept": "Sales", "tone": "warn"}]}, {"sl": 18, "code": "ATL", "name": "Akij Telecom Ltd.", "head": "Masud Al Amin Razib", "uom": "PCS", "bq": null, "fq": null, "aq": 5866.0, "bud": 18000000.0, "fc": 3000000.0, "act": 1245188.0, "ctarget": 11600000.0, "cact": 3061534.0, "rec": 21781379.0, "aq_raw": 5866.0, "achvBud": 0.0691771111111111, "achvFc": 0.4150626666666667, "proj": 1697983.6363636362, "projAchv": 0.09433242424242423, "gap": 16302016.363636363, "openGap": 16754812.0, "cachv": 0.26392534482758623, "curDaily": 56599.454545454544, "reqDaily": 2094351.5, "rrMult": 37.00303327690276, "recDays": 384.83372631281384, "qa": null, "va": 0.4150626666666667, "chips": [{"label": "Severe under-delivery", "dept": "Sales", "tone": "bad"}, {"label": "Collection risk", "dept": "Sales", "tone": "warn"}]}, {"sl": 19, "code": "AITL", "name": "Akij Infotech Ltd.", "head": "ASM Shawkat Lillat", "uom": "PCS", "bq": null, "fq": null, "aq": 396.0, "bud": 49500000.0, "fc": 12000000.0, "act": 1961650.0, "ctarget": 14000000.0, "cact": 4271595.0, "rec": 52313422.0, "aq_raw": 396.0, "achvBud": 0.03962929292929293, "achvFc": 0.16347083333333334, "proj": 2674977.2727272725, "projAchv": 0.054039944903581265, "gap": 46825022.72727273, "openGap": 47538350.0, "cachv": 0.30511392857142855, "curDaily": 89165.90909090909, "reqDaily": 5942293.75, "rrMult": 66.64311294063671, "recDays": 586.6975678637882, "qa": null, "va": 0.16347083333333334, "chips": [{"label": "Severe under-delivery", "dept": "Sales", "tone": "bad"}, {"label": "Collection risk", "dept": "Sales", "tone": "warn"}]}, {"sl": 20, "code": "BPL", "name": "Blue Pill Limited.", "head": "Shikdar Maruf Yazdani", "uom": "PCS", "bq": null, "fq": null, "aq": 2.0, "bud": 75000000.0, "fc": 3000000.0, "act": 1665207.0, "ctarget": 11761338.0, "cact": 2195415.0, "rec": 75791853.0, "aq_raw": 2.0, "achvBud": 0.02220276, "achvFc": 0.555069, "proj": 2270736.8181818184, "projAchv": 0.03027649090909091, "gap": 72729263.18181819, "openGap": 73334793.0, "cachv": 0.18666371122061112, "curDaily": 75691.22727272728, "reqDaily": 9166849.125, "rrMult": 121.10847525262623, "recDays": 1001.3294239094598, "qa": null, "va": 0.555069, "chips": [{"label": "Plan cut pre-month", "dept": "Planning", "tone": "bad"}, {"label": "Collection risk", "dept": "Sales", "tone": "warn"}]}, {"sl": 21, "code": "iBOS", "name": "iBOS Limited.", "head": "Md. Jayed Bin Rashid", "uom": "Service", "bq": null, "fq": null, "aq": 0.0, "bud": 27847000.0, "fc": 25969000.0, "act": 11282326.0, "ctarget": 20400000.0, "cact": 5478736.0, "rec": 96035508.0, "aq_raw": 0.0, "achvBud": 0.40515409200272917, "achvFc": 0.4344536177750395, "proj": 15384990.0, "projAchv": 0.5524828527309944, "gap": 12462010.0, "openGap": 16564674.0, "cachv": 0.26856549019607845, "curDaily": 512833.0, "reqDaily": 2070584.25, "rrMult": 4.037540973377299, "recDays": 187.26468070502483, "qa": null, "va": 0.4344536177750395, "chips": [{"label": "Tracking behind", "dept": "Sales", "tone": "warn"}, {"label": "Collection risk", "dept": "Sales", "tone": "warn"}]}, {"sl": 22, "code": "AAFL", "name": "Akij Agro Feed Ltd.", "head": "ATM Habib Ullah", "uom": "M. Ton", "bq": 16500.0, "fq": 18384.0, "aq": 13597.0, "bud": 962000000.0, "fc": 1119300000.0, "act": 819597191.0, "ctarget": 972626636.0, "cact": 833920340.0, "rec": 834334218.0, "aq_raw": 13597.0, "achvBud": 0.851972132016632, "achvFc": 0.7322408567854909, "proj": 1117632533.1818182, "projAchv": 1.1617801800226801, "gap": -155632533.18181825, "openGap": 142402809.0, "cachv": 0.8573899882379943, "curDaily": 37254417.77272727, "reqDaily": 17800351.125, "rrMult": 0.47780510847309626, "recDays": 22.395577971179257, "qa": 0.7396105308964317, "va": 0.7322408567854909, "chips": [{"label": "Tracking", "dept": "—", "tone": "info"}]}, {"sl": 23, "code": "ABL", "name": "Akij Breeders Ltd.", "head": "ATM Habib Ullah", "uom": "PCS", "bq": 617517.0, "fq": 433000.0, "aq": 293280.0, "bud": 27788270.0, "fc": 19485000.0, "act": 13779460.0, "ctarget": 19485000.0, "cact": 18154731.0, "rec": 0.0, "aq_raw": 293280.0, "achvBud": 0.49587325875270394, "achvFc": 0.7071829612522453, "proj": 18790172.727272727, "projAchv": 0.6761908073900508, "gap": 8998097.272727273, "openGap": 14008810.0, "cachv": 0.9317285604311009, "curDaily": 626339.0909090909, "reqDaily": 1751101.25, "rrMult": 2.7957719315560987, "recDays": 0.0, "qa": 0.6773210161662817, "va": 0.7071829612522453, "chips": [{"label": "Volume shortfall", "dept": "Sales", "tone": "warn"}]}, {"sl": 24, "code": "NTL", "name": "Nobayon Traders Ltd.", "head": "Kazi Sibbir Ahammad", "uom": "M. Ton", "bq": 15650.0, "fq": 7280.0, "aq": 3170.0, "bud": 746000000.0, "fc": 347000000.0, "act": 186720863.0, "ctarget": 351000000.0, "cact": 316333942.0, "rec": 224577328.0, "aq_raw": 3170.0, "achvBud": 0.250296063002681, "achvFc": 0.538100469740634, "proj": 254619358.63636366, "projAchv": 0.3413128131854741, "gap": 491380641.3636364, "openGap": 559279137.0, "cachv": 0.901236301994302, "curDaily": 8487311.954545455, "reqDaily": 69909892.125, "rrMult": 8.236988636615287, "recDays": 26.460359793859777, "qa": 0.43543956043956045, "va": 0.538100469740634, "chips": [{"label": "Volume-constrained", "dept": "Operations", "tone": "warn"}]}, {"sl": 25, "code": "AASL", "name": "Akij Air Service Ltd.", "head": "Daraz Mhamud", "uom": "Service", "bq": null, "fq": null, "aq": 0.0, "bud": 17526671.0, "fc": 17526671.0, "act": 1038449.0, "ctarget": 17526671.0, "cact": 1038449.0, "rec": 0.0, "aq_raw": 0.0, "achvBud": 0.05924964301549336, "achvFc": 0.05924964301549336, "proj": 1416066.8181818181, "projAchv": 0.08079496774840003, "gap": 16110604.181818182, "openGap": 16488222.0, "cachv": 0.05924964301549336, "curDaily": 47202.22727272727, "reqDaily": 2061027.75, "rrMult": 43.66378175529082, "recDays": 0.0, "qa": null, "va": 0.05924964301549336, "chips": [{"label": "Severe under-delivery", "dept": "Sales", "tone": "bad"}, {"label": "Collection risk", "dept": "Sales", "tone": "warn"}]}, {"sl": 26, "code": "ALL", "name": "Akij Logistics Ltd.", "head": "Bikash Bromha", "uom": "Service", "bq": null, "fq": null, "aq": 0.0, "bud": 69641900.0, "fc": 8473657.0, "act": 10252839.0, "ctarget": 68108720.0, "cact": 45746835.0, "rec": 0.0, "aq_raw": 0.0, "achvBud": 0.14722227567025023, "achvFc": 1.2099662518792063, "proj": 13981144.09090909, "projAchv": 0.2007576486412503, "gap": 55660755.90909091, "openGap": 59389061.0, "cachv": 0.6716736858364097, "curDaily": 466038.13636363635, "reqDaily": 7423632.625, "rrMult": 15.929238501648179, "recDays": 0.0, "qa": null, "va": 1.2099662518792063, "chips": [{"label": "Plan cut pre-month", "dept": "Planning", "tone": "bad"}]}, {"sl": 27, "code": "AMXL", "name": "Akij Movex Ltd.", "head": "Md. Shihab Uddin", "uom": "Service", "bq": null, "fq": null, "aq": 0.0, "bud": 46000000.0, "fc": 46000000.0, "act": 18982894.0, "ctarget": 46000000.0, "cact": 29963531.0, "rec": 66767599.0, "aq_raw": 0.0, "achvBud": 0.41267160869565217, "achvFc": 0.41267160869565217, "proj": 25885764.545454547, "projAchv": 0.5627340118577076, "gap": 20114235.454545453, "openGap": 27017106.0, "cachv": 0.6513811086956521, "curDaily": 862858.8181818182, "reqDaily": 3377138.25, "rrMult": 3.9138943461413205, "recDays": 77.37951747504884, "qa": null, "va": 0.41267160869565217, "chips": [{"label": "Tracking behind", "dept": "Sales", "tone": "warn"}]}, {"sl": 28, "code": "ALCL", "name": "AKIJ LifeCare Ltd.", "head": "Istiuck Ali Talukdar", "uom": "PCS", "bq": null, "fq": null, "aq": 0.0, "bud": 135895421.0, "fc": 92000000.0, "act": 63127879.0, "ctarget": 92000000.0, "cact": 67032189.0, "rec": 16766276.0, "aq_raw": 0.0, "achvBud": 0.4645327895190817, "achvFc": 0.686172597826087, "proj": 86083471.36363636, "projAchv": 0.6334538038896569, "gap": 49811949.63636364, "openGap": 72767542.0, "cachv": 0.72861075, "curDaily": 2869449.0454545454, "reqDaily": 9095942.75, "rrMult": 3.169926562874067, "recDays": 5.843029701663191, "qa": null, "va": 0.686172597826087, "chips": [{"label": "Tracking behind", "dept": "Sales", "tone": "warn"}]}, {"sl": 29, "code": "AAIL", "name": "Akij Automobile Industries Ltd.", "head": "Md. Ehtesamul Haq", "uom": "PCS", "bq": 1933.0, "fq": 1933.0, "aq": 784.0, "bud": 43897922.0, "fc": 43897922.0, "act": 26222800.0, "ctarget": 40801356.0, "cact": 31586263.0, "rec": 72422033.0, "aq_raw": 784.0, "achvBud": 0.5973585720071214, "achvFc": 0.5973585720071214, "proj": 35758363.63636364, "projAchv": 0.814579870918802, "gap": 8139558.36363636, "openGap": 17675122.0, "cachv": 0.7741473837291094, "curDaily": 1191945.4545454546, "reqDaily": 2209390.25, "rrMult": 1.8536001304208551, "recDays": 60.75951942584316, "qa": 0.40558717020175894, "va": 0.5973585720071214, "chips": [{"label": "Volume-constrained", "dept": "Operations", "tone": "warn"}]}, {"sl": 30, "code": "NJL", "name": "Nextjobz Ltd.", "head": "Shoeb Hassan", "uom": "Service", "bq": null, "fq": null, "aq": 0.0, "bud": 2989000.0, "fc": 2989000.0, "act": 345784.0, "ctarget": 2700000.0, "cact": 2809166.0, "rec": 6125206.0, "aq_raw": 0.0, "achvBud": 0.11568551354968216, "achvFc": 0.11568551354968216, "proj": 471523.63636363635, "projAchv": 0.15775297302229385, "gap": 2517476.3636363638, "openGap": 2643216.0, "cachv": 1.0404318518518518, "curDaily": 15717.454545454546, "reqDaily": 330402.0, "rrMult": 21.021342803599936, "recDays": 389.70725076926635, "qa": null, "va": 0.11568551354968216, "chips": [{"label": "Severe under-delivery", "dept": "Sales", "tone": "bad"}]}, {"sl": 31, "code": "AEFL", "name": "Akij Electrofab Ltd.", "head": "Junayed Hafiz", "uom": "Spool", "bq": 13600.0, "fq": 1623.0, "aq": 1117.0, "bud": 42003360.0, "fc": 5000000.0, "act": 3425610.0, "ctarget": 5000000.0, "cact": 3163650.0, "rec": 5657843.0, "aq_raw": 1117.0, "achvBud": 0.08155561840767024, "achvFc": 0.685122, "proj": 4671286.363636363, "projAchv": 0.11121220691955032, "gap": 37332073.63636364, "openGap": 38577750.0, "cachv": 0.63273, "curDaily": 155709.54545454544, "reqDaily": 4822218.75, "rrMult": 30.969320062704163, "recDays": 36.33587769769472, "qa": 0.6882316697473814, "va": 0.685122, "chips": [{"label": "Volume shortfall", "dept": "Sales", "tone": "warn"}]}, {"sl": 32, "code": "ACEL", "name": "AKIJ Consumer Electronics Ltd.", "head": "Abu Tariq Jia Chowdhury", "uom": "PCS", "bq": 1426.0, "fq": 269.0, "aq": 120.0, "bud": 92747062.0, "fc": 17500000.0, "act": 7468676.0, "ctarget": 12924760.0, "cact": 8391420.0, "rec": 5607809.0, "aq_raw": 120.0, "achvBud": 0.0805273594542542, "achvFc": 0.4267814857142857, "proj": 10184558.181818182, "projAchv": 0.10981003561943754, "gap": 82562503.81818181, "openGap": 85278386.0, "cachv": 0.6492515141480384, "curDaily": 339485.2727272727, "reqDaily": 10659798.25, "rrMult": 31.399884196342164, "recDays": 16.51856339731433, "qa": 0.44609665427509293, "va": 0.4267814857142857, "chips": [{"label": "Plan cut pre-month", "dept": "Planning", "tone": "bad"}]}, {"sl": 33, "code": "AMPL", "name": "Akij Mediplex Ltd.", "head": "Abu Zafor Iqbal Ahamed", "uom": "Service", "bq": null, "fq": null, "aq": 0.0, "bud": 10826200.0, "fc": 6000000.0, "act": 1803808.0, "ctarget": 5200000.0, "cact": 2442000.0, "rec": 6143070.0, "aq_raw": 0.0, "achvBud": 0.16661506345716873, "achvFc": 0.30063466666666666, "proj": 2459738.1818181816, "projAchv": 0.2272023592597755, "gap": 8366461.818181818, "openGap": 9022392.0, "cachv": 0.4696153846153846, "curDaily": 81991.27272727272, "reqDaily": 1127799.0, "rrMult": 13.755110299987583, "recDays": 74.92346192055918, "qa": null, "va": 0.30063466666666666, "chips": [{"label": "Severe under-delivery", "dept": "Sales", "tone": "bad"}]}], "buckets": [{"label": "≥ 100% of budget", "count": 1, "amount": 3424580469.0, "color": "#0f8f66"}, {"label": "75 – 99%", "count": 1, "amount": 819597191.0, "color": "#5aa832"}, {"label": "50 – 74%", "count": 7, "amount": 2904368166.0, "color": "#e0a11b"}, {"label": "25 – 49%", "count": 8, "amount": 1324865001.0, "color": "#e06c1b"}, {"label": "Below 25%", "count": 14, "amount": 49206798.0, "color": "#cf3f3f"}, {"label": "No budget base", "count": 2, "amount": 82367875.0, "color": "#b9c7db"}], "pareto": [{"name": "Akij Essentials Ltd.(Trading)", "gap": 2774035156.818182, "cum": 0.37780648870125655, "color": "#cf3f3f"}, {"name": "Bongo & Daily (Coal)", "gap": 1135874181.3636363, "cum": 0.5325055504678832, "color": "#cf3f3f"}, {"name": "Akij Cement Company Ltd.", "gap": 646988580.4545455, "cum": 0.6206214069704774, "color": "#e06c1b"}, {"name": "Nobayon Traders Ltd.", "gap": 491380641.3636364, "cum": 0.6875444213645356, "color": "#e06c1b"}, {"name": "G2G (Bongo & MTS & Shipping BADC/BCIC)", "gap": 393413070.0, "cum": 0.7411248564287994, "color": "#e0a11b"}, {"name": "Akij Ispat Ltd.", "gap": 376457072.72727275, "cum": 0.7923959891843698, "color": "#e0a11b"}, {"name": "Akij Essentials Ltd.(Manufacruring)", "gap": 296497977.090909, "cum": 0.8327771859966797, "color": "#e0a11b"}, {"name": "Akij Building Solutions-Bitumen", "gap": 268500000.0, "cum": 0.8693452309138322, "color": "#cf3f3f"}, {"name": "Akij Building Solutions-Asphalt", "gap": 222240241.36363637, "cum": 0.8996129818582801, "color": "#cf3f3f"}, {"name": "Akij Ready Mix Concrete Ltd.", "gap": 126014708.36363637, "cum": 0.9167754083598194, "color": "#e0a11b"}, {"name": "AKIJ Consumer Electronics Ltd.", "gap": 82562503.81818181, "cum": 0.9280199124495618, "color": "#cf3f3f"}, {"name": "Blue Pill Limited.", "gap": 72729263.18181819, "cum": 0.9379251897785158, "color": "#cf3f3f"}], "dept": [{"name": "Marketing", "count": 2, "gap": 48345301.63636364, "share": 0.006584332073638103, "sbus": ["Akij Essentials Ltd.(Export)", "Akij Commodities Ltd. (F&B)"]}, {"name": "Sales", "count": 15, "gap": 1384038852.0909092, "share": 0.18849756018750286, "sbus": ["Akij Cement Company Ltd.", "G2G (Bongo & MTS & Shipping BADC/BCIC)", "Akij Poly Fibre Industries Ltd.", "AKIJ LifeCare Ltd.", "Akij Light Engineering Ltd.", "Akij Infotech Ltd.", "Akij Electrofab Ltd.", "Akij Movex Ltd.", "Akij Telecom Ltd.", "Akij Air Service Ltd.", "iBOS Limited.", "Akij Breeders Ltd.", "Akij Mediplex Ltd.", "Akij Building-Lube-Oil", "Nextjobz Ltd."]}, {"name": "Operations", "count": 2, "gap": 499520199.72727275, "share": 0.06803157206946699, "sbus": ["Nobayon Traders Ltd.", "Akij Automobile Industries Ltd."]}, {"name": "Supply Chain", "count": 1, "gap": 268500000.0, "share": 0.03656804491715247, "sbus": ["Akij Building Solutions-Bitumen"]}, {"name": "Planning", "count": 8, "gap": 4343102102.454546, "share": 0.59150373468282, "sbus": ["Akij Essentials Ltd.(Trading)", "Bongo & Daily (Coal)", "Akij Building Solutions-Asphalt", "AKIJ Consumer Electronics Ltd.", "Blue Pill Limited.", "Akij Logistics Ltd.", "Akij Commodities Ltd. (Fruits)", "Akij Commodities Ltd. (Cotton)"]}], "heads": [{"name": "Biju Biswas", "sbus": ["Akij Essentials Ltd.(Trading)", "Bongo & Daily (Coal)"], "count": 2, "act": 11651667.0, "gap": 3909909338.181818, "critical": 2}, {"name": "Shaibal Shaha", "sbus": ["Akij Cement Company Ltd.", "Akij Ispat Ltd."], "count": 2, "act": 1629882941.0, "gap": 1023445653.1818182, "critical": 1}, {"name": "Kazi Sibbir Ahammad", "sbus": ["Nobayon Traders Ltd."], "count": 1, "act": 186720863.0, "gap": 491380641.3636364, "critical": 1}, {"name": "Mohammad Bahauddin", "sbus": ["G2G (Bongo & MTS & Shipping BADC/BCIC)"], "count": 1, "act": 679354082.0, "gap": 393413070.0, "critical": 0}, {"name": "Anisur Rahman", "sbus": ["Akij Ready Mix Concrete Ltd.", "Akij Building Solutions-Asphalt"], "count": 2, "act": 276607461.0, "gap": 348254949.72727275, "critical": 1}, {"name": "MD Akterrul Alam Shah", "sbus": ["Akij Essentials Ltd.(Manufacruring)"], "count": 1, "act": 1045234803.0, "gap": 296497977.090909, "critical": 0}, {"name": "Md. Ehtesamul Haq", "sbus": ["Akij Building-Lube-Oil", "Akij Building Solutions-Bitumen", "Akij Automobile Industries Ltd."], "count": 3, "act": 41204904.0, "gap": 283628889.54545456, "critical": 1}, {"name": "Abu Tariq Jia Chowdhury", "sbus": ["AKIJ Consumer Electronics Ltd."], "count": 1, "act": 7468676.0, "gap": 82562503.81818181, "critical": 1}, {"name": "Shikdar Maruf Yazdani", "sbus": ["Blue Pill Limited."], "count": 1, "act": 1665207.0, "gap": 72729263.18181819, "critical": 1}, {"name": "Badrul Haque", "sbus": ["Akij Poly Fibre Industries Ltd."], "count": 1, "act": 104536313.0, "gap": 69812482.27272728, "critical": 1}, {"name": "Masud Al Amin Razib", "sbus": ["Akij Light Engineering Ltd.", "Akij Telecom Ltd."], "count": 2, "act": 157682027.0, "gap": 64297457.09090908, "critical": 1}, {"name": "Bikash Bromha", "sbus": ["Akij Logistics Ltd."], "count": 1, "act": 10252839.0, "gap": 55660755.90909091, "critical": 1}, {"name": "Istiuck Ali Talukdar", "sbus": ["AKIJ LifeCare Ltd."], "count": 1, "act": 63127879.0, "gap": 49811949.63636364, "critical": 1}, {"name": "ASM Shawkat Lillat", "sbus": ["Akij Infotech Ltd."], "count": 1, "act": 1961650.0, "gap": 46825022.72727273, "critical": 1}, {"name": "Junayed Hafiz", "sbus": ["Akij Electrofab Ltd."], "count": 1, "act": 3425610.0, "gap": 37332073.63636364, "critical": 1}, {"name": "Md. Abdul Awal", "sbus": ["Akij Essentials Ltd.(Export)"], "count": 1, "act": 670097.0, "gap": 29191149.363636363, "critical": 1}, {"name": "Md. Shihab Uddin", "sbus": ["Akij Movex Ltd."], "count": 1, "act": 18982894.0, "gap": 20114235.454545453, "critical": 1}, {"name": "Md. Imran Hossain", "sbus": ["Akij Commodities Ltd. (F&B)"], "count": 1, "act": 9760225.0, "gap": 19154152.272727273, "critical": 1}, {"name": "Daraz Mhamud", "sbus": ["Akij Air Service Ltd."], "count": 1, "act": 1038449.0, "gap": 16110604.181818182, "critical": 1}, {"name": "Md. Jayed Bin Rashid", "sbus": ["iBOS Limited."], "count": 1, "act": 11282326.0, "gap": 12462010.0, "critical": 1}, {"name": "Abu Zafor Iqbal Ahamed", "sbus": ["Akij Mediplex Ltd."], "count": 1, "act": 1803808.0, "gap": 8366461.818181818, "critical": 1}, {"name": "Shoeb Hassan", "sbus": ["Nextjobz Ltd."], "count": 1, "act": 345784.0, "gap": 2517476.3636363638, "critical": 1}, {"name": "Md. Imranul Haque", "sbus": ["Akij Commodities Ltd. (Fruits)"], "count": 1, "act": 7014.0, "gap": -9564.545454545454, "critical": 0}, {"name": "Bidhan Chandra Pramanik", "sbus": ["Akij Commodities Ltd. (Cotton)"], "count": 1, "act": 82360861.0, "gap": -112310265.0, "critical": 0}, {"name": "ATM Habib Ullah", "sbus": ["Akij Agro Feed Ltd.", "Akij Breeders Ltd."], "count": 2, "act": 833376651.0, "gap": -146634435.90909097, "critical": 1}, {"name": "MD Rasel Uddin Ahmed", "sbus": ["Akij Shipping Line Ltd. (ASLL)"], "count": 1, "act": 3424580469.0, "gap": -1745279957.727273, "critical": 0}], "counts": {"critical": 22, "noplan": 4, "collrisk": 10, "onTrack": 5, "top3share": 0.6206214069704774, "top5share": 0.7411248564287994, "top10share": 0.9167754083598195}, "noplanBudget": 4269297975.0, "noplanForecast": 15381029.0, "criticalGap": 6086969055.636364, "topGapNames": ["Akij Essentials Ltd.(Trading)", "Bongo & Daily (Coal)", "Akij Cement Company Ltd."]};
+const LS = {unit:'arlNov26.unit.v1'};
+let UNIT = localStorage.getItem(LS.unit) || 'bdt';
+let SORTKEY = 'achv', SORTDIR = -1, FILTER = 'all';
+
+/* ---------- formatting ---------- */
+const nf = new Intl.NumberFormat('en-US');
+function money(v){
+  if(v===null||v===undefined||isNaN(v)) return '—';
+  if(UNIT==='cr') return nf.format(Math.round(v/1e7*10)/10) + (Math.abs(v)>=1e7?'':'');
+  if(UNIT==='mn') return nf.format(Math.round(v/1e6*10)/10);
+  return nf.format(Math.round(v));
+}
+function moneyU(v){
+  const s = money(v);
+  if(UNIT==='cr') return '৳'+s+' Cr';
+  if(UNIT==='mn') return '৳'+s+' Mn';
+  return '৳'+s;
+}
+function pct(v,d){ return (v===null||v===undefined||isNaN(v))?'—':(v*100).toFixed(d===undefined?1:d)+'%'; }
+function achvColor(v){
+  if(v===null||v===undefined) return '#b9c7db';
+  if(v>=1) return '#0f8f66';
+  if(v>=0.75) return '#5aa832';
+  if(v>=0.5) return '#e0a11b';
+  if(v>=0.25) return '#e06c1b';
+  return '#cf3f3f';
+}
+function tone(v){ return v>=1?'good':v>=0.5?'warn':'bad'; }
+function esc(s){ return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+/* ---------- KPI ---------- */
+function renderKPI(){
+  const t = DATA.totals;
+  const gapOpen = t.bud - t.act;
+  const cards = [
+    {cls:'k1',lbl:'November Budget (Target)',val:moneyU(t.bud),sub:'33 SBU lines · 30-day month · '+DATA.meta.daysElapsed+' days elapsed'},
+    {cls:'k2',lbl:'Revised Forecast',val:moneyU(t.fc),sub:'<b>'+pct(1-t.fc/t.bud)+'</b> below target before the month began'},
+    {cls:'k3',lbl:'Actual 01–22 Nov',val:moneyU(t.act),sub:'Daily run-rate <b>'+moneyU(t.curDaily)+'</b>'},
+    {cls:'k4',lbl:'Achievement vs Budget',val:pct(t.achvBud),sub:'<b>'+pct(t.achvFc)+'</b> vs forecast'+bar(t.achvBud),raw:true},
+    {cls:'k5',lbl:'Open Gap to Target',val:moneyU(gapOpen),sub:'Needs <b>'+moneyU(t.reqDaily)+'/day</b> · '+t.mult.toFixed(2)+'× current run-rate'},
+    {cls:'k6',lbl:'Collection Achievement',val:pct(t.cachv),sub:'<b>'+moneyU(t.cact)+'</b> of '+moneyU(t.ctarget)+bar(t.cachv),raw:true}
+  ];
+  document.getElementById('kpiRow').innerHTML = cards.map(c=>
+    '<div class="kpi '+c.cls+'"><div class="lbl">'+c.lbl+'</div><div class="val num">'+c.val+'</div><div class="sub">'+c.sub+'</div></div>').join('');
+}
+function bar(v){
+  const c = achvColor(v);
+  return '<div class="minibar"><i style="width:'+Math.min(100,(v||0)*100)+'%;background:'+c+'"></i></div>';
+}
+
+/* ---------- banner ---------- */
+function renderBanner(){
+  const t = DATA.totals;
+  document.getElementById('banner').innerHTML =
+   '<div class="cell" style="flex:1 1 260px"><div class="big">Projected month-end: <span>'+moneyU(t.proj)+'</span></div>'+
+   '<div style="margin-top:2px">'+pct(t.projAchv)+' of the November target · '+pct(t.proj/t.fc)+' of the revised forecast · '+DATA.meta.daysLeft+' days left to bill '+moneyU(t.bud-t.act)+'</div></div>'+
+   '<div class="sep"></div>'+
+   '<div class="cell">Critical SBUs<b>'+DATA.counts.critical+'</b></div>'+
+   '<div class="cell">Nil / no-plan SBUs<b>'+DATA.counts.noplan+'</b></div>'+
+   '<div class="cell">Collection risk<b>'+DATA.counts.collrisk+'</b></div>'+
+   '<div class="cell">Receivable<b>'+moneyU(t.rec)+'</b></div>';
+}
+
+/* ---------- gap decomposition ---------- */
+function renderGapDecomp(){
+  const t = DATA.totals;
+  const rows = [
+    {l:'① Budget — the target',v:t.bud,c:'#0b1a2c',note:'100%'},
+    {l:'② Forecast after re-basing',v:t.fc,c:'#6b46c1',note:pct(t.fc/t.bud)+' of budget'},
+    {l:'③ Actual booked to 22 Nov',v:t.act,c:'#1a4fd6',note:pct(t.achvBud)+' of budget'},
+    {l:'④ Projected month-end',v:t.proj,c:'#0e7c9b',note:pct(t.projAchv)+' of budget'}
+  ];
+  const max = t.bud;
+  let h = '';
+  rows.forEach(r=>{
+    h += '<div class="hbar"><div class="lbl">'+r.l+'</div><div class="track">'+
+      '<div class="fill" style="width:'+(r.v/max*100)+'%;background:'+r.c+'"></div></div>'+
+      '<div class="val num">'+moneyU(r.v)+'</div></div>'+
+      '<div class="tiny" style="text-align:right;margin:-6px 0 10px;padding-right:130px">'+r.note+'</div>';
+  });
+  const planGap = t.bud - t.fc, execGap = t.fc - t.act;
+  h += '<div class="split"></div>'+
+    '<div class="kv">'+
+      '<div>Gap created in planning (① − ②)</div><div class="num neg"><b>'+moneyU(planGap)+'</b> &nbsp;'+pct(planGap/t.bud)+' of target</div>'+
+      '<div>Gap created in execution (② − ③, 22 days)</div><div class="num neg"><b>'+moneyU(execGap)+'</b> &nbsp;'+pct(execGap/t.fc)+' of forecast</div>'+
+      '<div>Total gap to target (① − ③)</div><div class="num neg"><b>'+moneyU(t.bud-t.act)+'</b> &nbsp;'+pct(1-t.achvBud)+' of target</div>'+
+    '</div>'+
+    '<div class="callout">'+(planGap>execGap
+      ? 'More than half of the shortfall was conceded before a single unit was sold: the forecast sits '+pct(planGap/t.bud)+' under the budget. Execution is currently running at '+pct(t.act/t.fc)+' of that reduced forecast — the machine is delivering the plan it was given, not the target it was set.'
+      : 'The larger part of the shortfall is in execution: the forecast was credible but delivery is behind it.')+'</div>';
+  document.getElementById('gapDecomp').innerHTML = h;
+}
+
+/* ---------- distribution ---------- */
+function renderDist(){
+  const total = DATA.buckets.reduce((a,b)=>a+b.count,0) || 1;
+  document.getElementById('distStack').innerHTML = DATA.buckets.map(b=>
+    '<div style="background:'+b.color+';flex:'+(b.count/total*100)+'" title="'+esc(b.label)+': '+b.count+' SBUs"></div>').join('');
+  document.getElementById('distLegend').innerHTML = DATA.buckets.map(b=>
+    '<div class="row"><span class="dot" style="background:'+b.color+'"></span><span>'+b.label+'</span>'+
+    '<span class="muted">'+b.count+' SBU'+(b.count===1?'':'s')+' · '+pct(b.count/total,0)+' of lines</span>'+
+    '<span class="num"><b>'+moneyU(b.amount)+'</b></span></div>').join('');
+}
+
+/* ---------- pareto ---------- */
+function renderPareto(){
+  const rows = DATA.pareto;
+  const max = Math.max.apply(null, rows.map(r=>r.gap));
+  const tot = DATA.totals.bud - DATA.totals.proj;
+  document.getElementById('pareto').innerHTML = rows.map(r=>
+    '<div class="hbar" style="grid-template-columns:250px 1fr 150px"><div class="lbl">'+esc(r.name)+'</div>'+
+    '<div class="track"><div class="fill" style="width:'+(r.gap/max*100)+'%;background:'+r.color+'"></div></div>'+
+    '<div class="val num">'+moneyU(r.gap)+' <span class="tiny">'+pct(r.cum)+'</span></div></div>').join('');
+  document.getElementById('paretoNote').innerHTML =
+    'The top 5 SBU lines carry <b>'+pct(DATA.counts.top5share)+'</b> of the gross projected shortfall, and the top 10 carry <b>'+pct(DATA.counts.top10share)+'</b>. '+
+    'Recovery effort concentrated on this short list will move the month-end number far more than a broad push across all 33 lines.';
+}
+
+/* ---------- top / risk lists ---------- */
+function renderLists(){
+  const rows = DATA.rows.filter(r=>r.achvBud!==null).slice().sort((a,b)=>b.achvBud-a.achvBud);
+  const top = rows.slice(0,6);
+  document.getElementById('topList').innerHTML = top.map((r,i)=>
+    '<div class="hbar" style="grid-template-columns:1fr 90px 96px"><div class="lbl" style="white-space:normal;line-height:1.3">'+
+    '<span class="rank '+(i===0?'r1':i===1?'r2':i===2?'r3':'')+'" style="display:inline-grid;margin-right:7px">'+(i+1)+'</span>'+
+    '<b>'+esc(r.name)+'</b><span class="sbu-sub">'+esc(r.head)+'</span></div>'+
+    '<div class="val num" style="color:'+achvColor(r.achvBud)+'">'+pct(r.achvBud)+'</div>'+
+    '<div class="val num">'+moneyU(r.act)+'</div></div>').join('');
+
+  const risk = DATA.rows.filter(r=>r.achvBud!==null && r.achvBud<0.5).sort((a,b)=>b.gap-a.gap).slice(0,6);
+  document.getElementById('riskList').innerHTML = risk.map(r=>
+    '<div class="hbar" style="grid-template-columns:1fr 84px 96px"><div class="lbl" style="white-space:normal;line-height:1.3">'+
+    '<b>'+esc(r.name)+'</b><span class="sbu-sub">'+esc(r.head)+' · <span class="chip '+(r.chips[0]?r.chips[0].tone:'grey')+' sm">'+(r.chips[0]?esc(r.chips[0].label):'—')+'</span></span></div>'+
+    '<div class="val num" style="color:'+achvColor(r.achvBud)+'">'+pct(r.achvBud)+'</div>'+
+    '<div class="val num neg">'+moneyU(r.gap)+'</div></div>').join('');
+}
+
+/* ---------- findings ---------- */
+function renderFindings(){
+  const t = DATA.totals, c = DATA.counts;
+  const f = DATA.topGapNames;
+  document.getElementById('findings').innerHTML = [
+    '<li><b>The gap is mostly a planning gap, not only an execution gap.</b> The forecast was set '+pct((t.bud-t.fc)/t.bud)+' below budget ('+moneyU(t.bud-t.fc)+'). At the current run-rate the month lands at '+moneyU(t.proj)+' — '+pct(t.proj/t.fc)+' of that forecast but only '+pct(t.projAchv)+' of the target. Holding SBU heads to the budget without fixing the forecast commits the business to a number it has already decided it cannot reach.</li>',
+    '<li><b>Recovery to 100% of budget is arithmetically impossible in 8 days.</b> It needs '+moneyU(t.reqDaily)+' per day against '+moneyU(t.curDaily)+' achieved — a '+t.mult.toFixed(1)+'× step-up. The realistic brief for custodians is: protect the forecast, close the '+moneyU(t.fc-t.act)+' forecast gap, and bank every receivable-linked order before 30 November.</li>',
+    '<li><b>Revenue is highly concentrated.</b> '+esc(f.slice(0,3).join(', '))+' together account for '+pct(c.top3share)+' of the projected shortfall. These three need a named recovery owner today.</li>',
+    '<li><b>'+c.noplan+' SBU lines carry a budget with almost no plan behind it.</b> Combined budget '+moneyU(DATA.noplanBudget)+' against a forecast of '+moneyU(DATA.noplanForecast)+'. A budget line that has no forecast, no supply commitment and no owner is not a target — it is an unallocated number inflating the group target.</li>',
+    '<li><b>Collection is a separate, quieter risk.</b> '+pct(t.cachv)+' of the collection target is achieved while receivables stand at '+moneyU(t.rec)+' — '+(t.rec/t.bud).toFixed(1)+'× one month of budgeted revenue. Cash conversion, not billing, may be the binding constraint on December.</li>',
+    '<li><b>'+c.critical+' SBUs are below half of their budget with '+DATA.meta.daysLeft+' days left.</b> Their combined open gap is '+moneyU(DATA.criticalGap)+'; without a committed initiative this week, the month closes on the projection.</li>'
+  ].join('');
+}
+
+/* ---------- leaderboard ---------- */
+function renderTable(){
+  let rows = DATA.rows.slice();
+  const q = (document.getElementById('q').value||'').toLowerCase();
+  if(q) rows = rows.filter(r=>(r.name+' '+r.code+' '+r.head).toLowerCase().includes(q));
+  if(FILTER==='above') rows = rows.filter(r=>r.achvBud!==null && r.achvBud>=1);
+  if(FILTER==='risk') rows = rows.filter(r=>r.achvBud!==null && r.achvBud<0.5);
+  if(FILTER==='plan') rows = rows.filter(r=>r.chips.some(c=>c.dept==='Planning'||c.label.indexOf('No plan')>=0||c.label.indexOf('Plan cut')>=0));
+  if(FILTER==='coll') rows = rows.filter(r=>r.cachv!==null && r.cachv<0.45);
+
+  const key = SORTKEY;
+  const KEYMAP = {achv:'achvBud', rank:'sl', gap:'gap', act:'act', bud:'bud', fc:'fc',
+                  proj:'proj', projachv:'projAchv', rr:'rrMult', coll:'cachv', rec:'rec', name:'name'};
+  const val = r => {
+    const k = KEYMAP[key] || key;
+    if(k==='name') return r.name;
+    const v = r[k];
+    return (v===null||v===undefined) ? -1e18 : v;
+  };
+  rows.sort((a,b)=>{
+    const x=val(a), y=val(b);
+    if(typeof x==='string') return SORTDIR===1? x.localeCompare(y) : y.localeCompare(x);
+    return SORTDIR===1? x-y : y-x;
+  });
+
+  const tb = document.getElementById('tbody');
+  let cum = 0;
+  tb.innerHTML = rows.map((r,i)=>{
+    const rankCls = i===0?'r1':i===1?'r2':i===2?'r3':'';
+    const chipHtml = r.chips.map(c=>'<span class="chip '+c.tone+' sm">'+esc(c.label)+'</span>').join(' ');
+    return '<tr>'+
+      '<td><span class="rank '+rankCls+'">'+(i+1)+'</span></td>'+
+      '<td class="l"><div class="sbu-cell"><div><span class="sbu-name">'+esc(r.name)+'</span>'+
+        '<span class="sbu-sub">'+(r.code?'<span class="code">'+esc(r.code)+'</span> ':'')+esc(r.head)+'</span></div></div></td>'+
+      '<td class="num">'+money(r.bud)+'</td>'+
+      '<td class="num dim">'+money(r.fc)+'</td>'+
+      '<td class="num"><b>'+money(r.act)+'</b></td>'+
+      '<td><div class="achvwrap"><div class="achvbar"><i style="width:'+Math.min(100,(r.achvBud||0)*100)+'%;background:'+achvColor(r.achvBud)+'"></i></div>'+
+        '<span class="num" style="color:'+achvColor(r.achvBud)+';font-weight:700;min-width:46px">'+pct(r.achvBud)+'</span></div></td>'+
+      '<td class="num '+(r.gap>0?'neg':'pos')+'">'+money(r.gap)+'</td>'+
+      '<td class="num" style="color:'+achvColor(r.projAchv)+'">'+pct(r.projAchv)+'</td>'+
+      '<td class="num">'+(r.rrMult===null?'—':r.rrMult.toFixed(2)+'×')+'</td>'+
+      '<td class="num" style="color:'+(r.cachv===null?'#b9c7db':achvColor(r.cachv))+'">'+pct(r.cachv)+'</td>'+
+      '<td class="num dim">'+money(r.rec)+'</td>'+
+      '<td class="l">'+chipHtml+'</td>'+
+    '</tr>';
+  }).join('') || '<tr><td colspan="12" style="text-align:center;padding:26px;color:#64758f">No SBU matches this filter.</td></tr>';
+
+  // append totals row
+  const t = DATA.totals;
+  tb.innerHTML += '<tr class="tot"><td></td><td class="l">Group total — '+rows.length+' line'+(rows.length===1?'':'s')+'</td>'+
+    '<td class="num">'+money(t.bud)+'</td><td class="num">'+money(t.fc)+'</td><td class="num">'+money(t.act)+'</td>'+
+    '<td class="num">'+pct(t.achvBud)+'</td><td class="num neg">'+money(t.bud-t.act)+'</td>'+
+    '<td class="num">'+pct(t.projAchv)+'</td><td class="num">'+t.mult.toFixed(2)+'×</td><td class="num">'+pct(t.cachv)+'</td>'+
+    '<td class="num">'+money(t.rec)+'</td><td class="l"></td></tr>';
+}
+
+/* ---------- events ---------- */
+document.getElementById('tabs').addEventListener('click', e=>{
+  const b = e.target.closest('.tab'); if(!b) return;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t===b));
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active', v.id==='v-'+b.dataset.v));
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+document.getElementById('unitSeg').addEventListener('click', e=>{
+  const b = e.target.closest('button'); if(!b) return;
+  UNIT = b.dataset.u; localStorage.setItem(LS.unit,UNIT);
+  document.querySelectorAll('#unitSeg button').forEach(x=>x.classList.toggle('on',x===b));
+  renderAll();
+});
+document.getElementById('btnPrint').onclick = ()=>window.print();
+document.getElementById('btnCsv').onclick = exportCsv;
+document.getElementById('q').addEventListener('input', renderTable);
+document.getElementById('sortBy').addEventListener('change', e=>{ SORTKEY=e.target.value; SORTDIR=-1; renderTable(); });
+document.getElementById('filters').addEventListener('click', e=>{
+  const b = e.target.closest('.fchip'); if(!b) return;
+  FILTER = b.dataset.f;
+  document.querySelectorAll('#filters .fchip').forEach(x=>x.classList.toggle('on',x===b));
+  renderTable();
+});
+document.querySelector('#tbl thead').addEventListener('click', e=>{
+  const th = e.target.closest('th'); if(!th) return;
+  const k = th.dataset.k; if(!k) return;
+  if(SORTKEY===k) SORTDIR = -SORTDIR; else { SORTKEY=k; SORTDIR=-1; }
+  renderTable();
+});
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._h); t._h = setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+/* ---------- csv ---------- */
+function csvCell(v){ const s = String(v===null||v===undefined?'':v); return '"'+s.replace(/"/g,'""')+'"'; }
+function exportCsv(){
+  const head = ['SL','SBU','Code','Responsible Head','Unit','Budget BDT','Forecast BDT','Actual 01-22 BDT',
+    'Achievement vs Budget','Achievement vs Forecast','Gap to Budget (projected)','Projected Month-end',
+    'Projected Achievement','Required Run-rate Multiple','Collection Target','Collection Actual',
+    'Collection Achievement','Receivable','Screening Driver','Driver Function'];
+  const lines = [head.map(csvCell).join(',')];
+  DATA.rows.slice().sort((a,b)=>b.gap-a.gap).forEach(r=>{
+    const t = DATA.meta && DATA.totals;
+    lines.push([r.sl,r.name,r.code,r.head,r.uom,Math.round(r.bud),Math.round(r.fc),Math.round(r.act),
+      (r.achvBud===null?'':(r.achvBud*100).toFixed(1)+'%'), (r.achvFc===null?'':(r.achvFc*100).toFixed(1)+'%'),
+      Math.round(r.gap),Math.round(r.proj),(r.projAchv===null?'':(r.projAchv*100).toFixed(1)+'%'),
+      (r.rrMult===null?'':r.rrMult.toFixed(2)),
+      Math.round(r.ctarget||0),Math.round(r.cact||0),(r.cachv===null?'':(r.cachv*100).toFixed(1)+'%'),
+      Math.round(r.rec||0), r.chips[0]?r.chips[0].label:'', r.chips[0]?r.chips[0].dept:''
+    ].map(csvCell).join(','));
+  });
+  lines.push(['','GROUP TOTAL','','','',Math.round(DATA.totals.bud),Math.round(DATA.totals.fc),Math.round(DATA.totals.act),
+    pct(DATA.totals.achvBud),pct(DATA.totals.achvFc),Math.round(DATA.totals.bud-DATA.totals.proj),Math.round(DATA.totals.proj),
+    pct(DATA.totals.projAchv),DATA.totals.mult.toFixed(2),Math.round(DATA.totals.ctarget),Math.round(DATA.totals.cact),
+    pct(DATA.totals.cachv),Math.round(DATA.totals.rec),'',''].map(csvCell).join(','));
+  const blob = new Blob(['\ufeff'+lines.join('\r\n')], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'ARL_SBU_Revenue_Nov2026.csv';
+  a.click(); URL.revokeObjectURL(a.href);
+  toast('Exported CSV');
+}
+
+/* ---------- countdown ---------- */
+function tick(){
+  const target = new Date('2026-11-23T12:00:00');
+  const now = new Date();
+  const diff = target - now;
+  const el = document.getElementById('clkSub');
+  if(diff <= 0){ el.textContent = 'Deadline reached — submit now'; document.getElementById('clkVal').textContent='OVERDUE'; }
+  else{
+    const h = Math.floor(diff/3600000), m = Math.floor(diff%3600000/60000);
+    el.textContent = h+'h '+m+'m remaining · 23 Nov 2026';
+  }
+}
+
+/* ---------- gap assessment data ---------- */
+const GAP = {
+  "Akij Agro Feed Ltd.": {
+    custodian: "Md. Moinuddin Pavel",
+    role: "Brand Marketing",
+    submitted: "23 Nov 2026",
+    verdict: { text: "Tracking ahead", tone: "good" },
+    headline: "Tracking ahead of budget on a 116.2% projected run-rate — the residual gap to the revised forecast (BDT 299.70 Mn) is a month-end sales-conversion requirement, with Sales/Business owning closure and Marketing providing focused demand generation.",
+    reason: [
+      { text: "Open gap to the revised forecast is BDT 299.70 Mn with 8 days remaining — a month-end sales conversion & execution requirement rather than a structural shortfall.", dept: "Sales" },
+      { text: "SBU is on a 116.2% projected achievement run-rate, so the brief is to protect the run-rate and close the forecast, not to re-plan the month.", dept: "Planning" }
+    ],
+    initiatives: [
+      { text: "Farmer-focused communication and technical engagement to strengthen product consideration and conversion.", dept: "Marketing + Sales" },
+      { text: "Digital communication and boosting to maintain farmer reach, product visibility and demand generation.", dept: "Marketing" },
+      { text: "Farmer and dealer support aligned to priority territories and business opportunities for immediate conversion.", dept: "Marketing + Sales" },
+      { text: "Product activation through Angina AKIJ Feed and Pothe Pothe AKIJ Feed Caravan Activation.", dept: "Marketing" }
+    ],
+    actions: [
+      "Priority market support — daily coordination with Sales to identify high-potential territories, dealers and immediate opportunities.",
+      "Digital demand push — intensify product-focused digital communication/boosting in priority markets.",
+      "Farmer conversion support — push practical, result-oriented product and technical communication to accelerate conversion.",
+      "Dealer / market activation — focused BTL and visibility at priority dealer points to support month-end sales.",
+      "Lead & opportunity follow-up — convert marketing-generated enquiries with Sales/Technical teams.",
+      "Daily performance alignment — redirect Marketing resources toward the highest immediate revenue opportunities.",
+      "Month-end focus — prioritise all remaining activity by its potential to drive immediate revenue conversion."
+    ],
+    close: "Marketing will remain closely aligned with Sales/Business to support the required month-end run-rate and close November above the revised forecast."
+  },
+
+  "AKIJ Consumer Electronics Ltd.": {
+    custodian: "Saydur Rahman Khan",
+    role: "Marketing Manager",
+    submitted: "23 Nov 2026",
+    verdict: { text: "Gap", tone: "bad" },
+    headline: "A structural gap: the ৳9.27 Cr budget assumed showrooms that have not yet launched (nearly 8× the ৳1.2 Cr monthly run-rate) and ignored the Oct–Jan seasonal trough, and was later cut 81%. Execution then stalled on no product manager, five best-selling SKUs out of stock, and no seasonal offer — leaving 356 generated leads unconverted.",
+    reason: [
+      { text: "Seasonality — Oct–Jan is the slowest retail window; Banani fell from ৳1.31 Cr in May to ৳0.52 Cr in Oct, a seasonal dip rather than a loss of demand.", dept: "Market" },
+      { text: "Planning — the ৳9.27 Cr budget assumed new showrooms that are not yet open; on existing showrooms alone it is nearly 8× the ৳1.2 Cr run-rate. The forecast was later cut 81%.", dept: "Planning" },
+      { text: "Planning / Product — no product manager means no SKU-level demand forecasting; stock planning has been reactive.", dept: "Planning + Product" },
+      { text: "Supply Chain — five best-selling SKUs were out of stock all season: HSU-13, HSU-19 Gravity, H100S90FUX, H75M80FUX, RZ32.", dept: "Supply Chain" },
+      { text: "Finance / Commercial — no product-wise seasonal offer; costing still pending with Finance.", dept: "Finance / Commercial" },
+      { text: "Marketing / Sales — 356 customer contacts were generated but could not be converted without a competitive offer.", dept: "Marketing + Sales" }
+    ],
+    initiatives: [
+      { text: "30% offer campaign drove 257 calls and 99 message conversations — 356 contacts at an average cost of $0.53 each.", dept: "Marketing" },
+      { text: "Online leads followed up by phone; 86 of 612 customers (14%) have returned to buy again.", dept: "Sales / Retail" },
+      { text: "Repriced 107 SKUs (MRP down 3.6% on average) and built an MOP-based offer model.", dept: "Commercial" },
+      { text: "A ৳23.6 L OLED clearance list is ready and awaiting execution.", dept: "Retail + Marketing" }
+    ],
+    actions: [
+      "TV Super Sale — up to 24% off on 174 units worth ৳2.19 Cr, covering 40 SKUs priced above TP.",
+      "Paid campaign — shift budget to Advantage+ campaigns for Noorjahan Road and Dhanmondi, stopping Reach and Likes campaigns; target 400+ calls.",
+      "Past buyers — call centre and sales team to reach all 612 past buyers, aiming for 29 orders.",
+      "Local activation — cycle branding and the 30% offer in Banani, Mohammadpur and Mirpur-1, applied only to the 131 SKUs priced above TP."
+    ]
+  },
+
+  "Akij Ready Mix Concrete Ltd.": {
+    custodian: "Not stated in reply",
+    role: "—",
+    submitted: "23 Nov 2026",
+    headline: "An execution gap on weak demand and pricing: 57.4% of forecast achieved (৳268.93 Mn vs ৳468.75 Mn, a ৳199.82 Mn gap) driven by lower market demand, higher prices than competitors and two rain days. Sales is leading the recovery; Marketing is in a support role.",
+    reason: [
+      { text: "Lower market demand and higher prices than competitors.", dept: "Marketing + Sales" },
+      { text: "Two days of rain disrupted sales activity.", dept: "External" }
+    ],
+    initiatives: [
+      { text: "Sales team working to improve performance; the Sales Head visited Chattogram (CTG) to assess and address the market situation.", dept: "Sales" }
+    ],
+    actions: [
+      "Support the Sales team's focused sales drive over the remaining days to improve market response and narrow the forecast gap."
+    ],
+    verdict: { text: "Gap", tone: "warn" }
+  },
+
+  "Akij Building-Lube-Oil": {
+    custodian: "AYM Mushfiqur Rahman",
+    role: "Senior Officer — Brand & Communication",
+    submitted: "23 Nov 2026",
+    verdict: { text: "Exceeded forecast", tone: "good" },
+    headline: "No gap — the SBU over-achieved: ৳1.5 Cr booked against a ৳1.3 Cr forecast (+৳0.2 Cr, ~115%), with momentum to be sustained through availability and visibility.",
+    reason: [
+      { text: "No gap to report — forecast exceeded by ~15%.", dept: null }
+    ],
+    initiatives: [
+      { text: "Maintained product availability and market visibility to drive demand.", dept: "Marketing + Supply Chain" }
+    ],
+    actions: [
+      "Sustain the momentum — continue to ensure product availability and market visibility."
+    ]
+  },
+
+  "Akij Automobile Industries Ltd.": {
+    custodian: "AYM Mushfiqur Rahman",
+    role: "Senior Officer — Brand & Communication",
+    submitted: "23 Nov 2026",
+    verdict: { text: "Gap", tone: "warn" },
+    headline: "An execution and coordination gap — ৳2.6 Cr achieved vs ৳4.4 Cr target (~59%, a ৳1.8 Cr gap) driven by weak cross-functional follow-up and stock-outs rather than market demand.",
+    reason: [
+      { text: "Lack of cross-functional follow-up — insufficient follow-up by the previous Brand Custodian delayed planned campaigns and brand activities.", dept: "Brand Mgmt / Marketing" },
+      { text: "Product availability — stock shortages at points of sale prevented conversion of demand into sales.", dept: "Procurement / Supply Chain" }
+    ],
+    initiatives: [
+      { text: "Procurement is securing stock to ensure adequate inventory across stores and dealer outlets.", dept: "Procurement" },
+      { text: "Marketing is establishing tight cross-functional coordination and follow-up routines to execute events and assets on schedule.", dept: "Marketing" }
+    ],
+    actions: [
+      "Stock-synchronized campaigns — align campaign launches strictly with confirmed stock availability.",
+      "Integrated planning calendar — a shared monthly calendar across Sales, Procurement, Logistics and Marketing, reinforced by weekly tracking meetings.",
+      "Retail & dealer visibility — rapidly deploy POSM, signage and in-shop branding at key retail locations.",
+      "Trade & customer promotions — targeted dealer incentives and customer offers in high-potential segments.",
+      "Field activations — fleet-owner meets, driver engagements and tyre-check camps to drive direct demand.",
+      "Digital lead generation — geo-targeted Facebook, Google and WhatsApp campaigns directing traffic to active stock points.",
+      "Performance dashboard — weekly tracking of sales, stock status and campaign delivery."
+    ]
+  },
+
+  "Akij Light Engineering Ltd.": {
+    custodian: "Zubair Shafiq",
+    role: "Manager — Marketing",
+    submitted: "23 Nov 2026",
+    verdict: { text: "On track — no gap expected", tone: "info" },
+    headline: "No residual gap expected — electrical-industry sales conversion and realisation are back-loaded, peaking in the last week of the month.",
+    reason: [
+      { text: "Sales conversion and revenue realisation in the electrical industry are typically higher in the last week of the month, so the in-month position understates the month-end outcome.", dept: "Market" }
+    ],
+    initiatives: [
+      { text: "Dedicated LED Bulb campaign launched to drive product demand and accelerate sales.", dept: "Marketing" },
+      { text: "Ongoing dealer and retailer engagement to strengthen market demand and support conversion.", dept: "Marketing + Sales" }
+    ],
+    actions: [
+      "Maintain the LED Bulb campaign and dealer/retailer engagement through month-end to deliver the target by 30 November — no remaining gap expected."
+    ]
+  },
+
+  "Akij Cement Company Ltd.": {
+    custodian: "Not stated in reply",
+    role: "—",
+    submitted: "23 Nov 2026",
+    verdict: { text: "Gap", tone: "bad" },
+    headline: "A ৳994.12 Mn gap (48.0% of forecast) from rain, local unrest and a weak dealer network — reluctant dealers, unfunded accounts and unconverted sites — compounded by high Sylhet logistics cost.",
+    reason: [
+      { text: "Weather — three days of rain, including four consecutive rainy days in Rajshahi.", dept: "External" },
+      { text: "Local unrest in Gazipur and Savar disrupted sales activity.", dept: "External" },
+      { text: "Dealer network — existing dealers reluctant to lift additional targets; dealers in Debidwar and Homna have declined over six months; previously switched sites still need conversion.", dept: "Sales" },
+      { text: "Rajshahi is a challenging market and Pias Trading is not lifting product due to a fund crisis.", dept: "Sales / Commercial" },
+      { text: "Sylhet's low market share is partly driven by high logistics costs from Dhaka.", dept: "Supply Chain / Logistics" }
+    ],
+    initiatives: [
+      { text: "Sales team is working on dealer pipeline development.", dept: "Sales" },
+      { text: "A new account is planned for Cumilla, with a balance transfer expected to support improvement.", dept: "Sales / Commercial" },
+      { text: "Working toward the 90% Sylhet plan.", dept: "Sales" }
+    ],
+    actions: [
+      "Focused dealer drive — build the pipeline, motivate existing dealers to lift additional volume, convert previously switched sites, and revive dealer activity in Debidwar and Homna.",
+      "Support the planned Cumilla account.",
+      "Coordinate with Sales to address Pias Trading's funding constraint.",
+      "Review a logistics subsidy option for Sylhet with Supply Chain."
+    ]
+  },
+
+  "AKIJ LifeCare Ltd.": {
+    custodian: "Faiza Afrin Haque",
+    role: "Marketing Officer",
+    submitted: "23 Nov 2026",
+    verdict: { text: "On track — no gap", tone: "info" },
+    headline: "No revenue gap against the revised model — the ERP still shows the old franchising-model budget; against the revised ৳9.2 Cr forecast, LifeCare is on track.",
+    reason: [
+      { text: "The ERP budget reflects the previous franchising model; the revised budget has not yet been updated in the ERP.", dept: "Finance / ERP" },
+      { text: "Against the revised November 2026 forecast of ৳9.2 Cr, LifeCare is on track with no revenue gap.", dept: null }
+    ],
+    initiatives: [
+      { text: "Business model revised and the corresponding budget updated; pending reflection in the ERP.", dept: "Finance / Commercial" }
+    ],
+    actions: [
+      "Continue planned brand awareness, digital communication and promotional activities to support revenue generation and achieve the November forecast."
+    ]
+  },
+
+  "Akij Air Service Ltd.": {
+    custodian: "Tanvir Rahman Ratul",
+    role: "Brand Marketing — AKIJ Air",
+    submitted: "23 Nov 2026",
+    verdict: { text: "Gap", tone: "bad" },
+    headline: "A 58.3% revenue gap — market contraction, aggressive price-war competition, Middle East geopolitical unrest and thin field-level sales presence have cut bookings; recovery centres on field coverage, agency acquisition and White Label commercialisation.",
+    reason: [
+      { text: "Contraction in the addressable market — reduced demand limited opportunities to generate incremental booking volumes.", dept: "Market" },
+      { text: "Aggressive price-war competition — competitors' pricing and promotions increased price sensitivity, hurting booking conversion.", dept: "Commercial" },
+      { text: "Middle East geopolitical unrest — regional uncertainty delayed or cancelled travel decisions on some routes.", dept: "External" },
+      { text: "Insufficient field-level sales presence — limited coverage and face-to-face engagement restricted agency acquisition and corporate business development.", dept: "Sales" }
+    ],
+    initiatives: [
+      { text: "Strengthening field sales coverage — additional recruitment, territory allocation and defined weekly visit targets.", dept: "Sales / HR" },
+      { text: "Increasing market visibility — agency visits, product demonstrations, rate and service updates, and structured follow-ups.", dept: "Sales / Marketing" },
+      { text: "White Label operations moving from pilot readiness to full commercial sales — sales kits, pricing, onboarding and partner support.", dept: "Business Dev / Sales / IT" },
+      { text: "Accelerating acquisition of new travel agencies, SMEs, corporate clients and distribution partners.", dept: "Sales" },
+      { text: "Reactivating dormant and low-production accounts through tailored commercial offers and service improvements.", dept: "Sales / Reservation / CS" },
+      { text: "Monitoring competitor pricing, reviewing fare competitiveness and resolving booking/payment issues.", dept: "Commercial / Revenue / Ops / IT" },
+      { text: "Introducing weekly sales targets, pipeline reviews and performance monitoring.", dept: "Operations / Sales" }
+    ],
+    actions: [
+      "Strengthen market visibility through regular digital campaigns and promotional communication.",
+      "Develop destination-focused promotional campaigns to generate customer interest and booking enquiries.",
+      "Execute targeted promotional campaigns to support new customer acquisition and dormant customer reactivation.",
+      "Monitor campaign performance and coordinate with Sales to improve enquiry generation and booking conversion."
+    ],
+    close: "Overall objective: rebuild sales momentum toward the ৳12.00 Cr monthly target — addressing the ৳7.00 Cr projected shortfall through stronger market coverage, customer acquisition, White Label activation and coordinated departmental effort."
+  },
+
+  "Akij Ispat Ltd.": {
+    custodian: "Rasel",
+    role: "—",
+    submitted: "23 Nov 2026",
+    verdict: { text: "Gap", tone: "warn" },
+    headline: "A ৳55.08 Cr gap (56.0% of target) driven by an ~8.73% market-wide rod de-growth — weak construction, higher taxes and cut public projects — plus cost-driven price rises, rod-quality complaints and a narrow price gap versus competitors.",
+    reason: [
+      { text: "Rod market de-growth (~8.73%) — reduced construction activity, a 15% capital gains tax on new housing, and an ~80% cut in government infrastructure projects.", dept: "External" },
+      { text: "Rising energy costs and import duties on raw materials raised rod prices, reducing purchasing power and shrinking demand.", dept: "External / Sales / Supply Chain" },
+      { text: "Increasing customer complaints on rod breakage during bending are hurting market confidence and sales conversion.", dept: "Operations / QA" },
+      { text: "The narrow price gap versus competitors makes it difficult to compete effectively and secure orders.", dept: "Sales / Pricing" }
+    ],
+    initiatives: [
+      { text: "Winter Jacket Trade Offer introduced alongside the existing trade incentive to strengthen dealer engagement and stabilise pricing.", dept: "Trade Marketing / Sales" },
+      { text: "Brand repositioning through a new campaign plus OOH visibility initiatives.", dept: "Marketing" },
+      { text: "Sales teams actively engaging dealers and project stakeholders to secure orders and accelerate lifting.", dept: "Sales" }
+    ],
+    actions: [
+      "Intensify dealer-level activation and promotional support during the remaining days of November.",
+      "Accelerate the new brand campaign and OOH visibility initiatives to strengthen brand preference and market confidence.",
+      "Coordinate with Sales and Operations to address quality concerns and improve order conversion.",
+      "Monitor competitor pricing and recommend necessary trade support to remain competitive."
+    ]
+  },
+
+  "Akij Mediplex Ltd.": {
+    custodian: "Imtiaz Rahman",
+    role: "Management Trainee",
+    submitted: "23 Nov 2026",
+    verdict: { text: "Gap", tone: "warn" },
+    headline: "53.6% of forecast achieved (৳37.54 L vs ৳70.00 L, a ৳32.46 L gap) with 8 days left — needs ~2.4× the current daily run-rate (৳4.06 L/day vs ৳1.71 L/day), driven by low patient footfall, weak conversion and doctor availability.",
+    reason: [
+      { text: "Lower-than-expected patient footfall.", dept: "Marketing + Sales" },
+      { text: "Insufficient patient conversion.", dept: "Operations" },
+      { text: "Doctor availability and service utilisation gaps.", dept: "Operations" },
+      { text: "Political unrest and weather conditions.", dept: "External" }
+    ],
+    initiatives: [
+      { text: "Promotional campaigns for selected diagnostic packages and healthcare services.", dept: "Marketing" },
+      { text: "Digital marketing through Facebook and other online channels.", dept: "Marketing" },
+      { text: "Patient awareness campaigns to increase OPD and diagnostic service utilisation.", dept: "Marketing" },
+      { text: "Follow-up with previous patients and prospects to encourage repeat visits.", dept: "Marketing + Sales" },
+      { text: "Corporate outreach and institutional engagement for bulk health-checkup opportunities.", dept: "Business Dev" },
+      { text: "Coordination with doctors and operational teams to improve patient experience and service conversion.", dept: "Operations" }
+    ],
+    actions: [
+      "Daily revenue monitoring — a ~৳4.06 L/day target with daily coordination across Operations and Business Development.",
+      "Focused diagnostic package promotion — limited-time offers, digital campaigns, SMS and WhatsApp to drive immediate patient response.",
+      "Patient reactivation — contact previous patients, pending inquiries and inactive leads by phone and SMS.",
+      "Doctor referral & engagement — strengthen ties with consultant and referral physicians for more OPD and diagnostics.",
+      "Local area marketing — targeted activity in surrounding communities and high-footfall locations.",
+      "Service availability coordination — align with Medical Operations on doctor availability, diagnostic capacity and report turnaround.",
+      "Performance review — interim reviews on 26 and 28 Nov, with the final gap analysis on 30 Nov."
+    ],
+    close: "Management support required: marketing budget approval, Operations coordination on doctor and diagnostic availability, operational delivery support, and daily revenue/service-wise performance updates."
+  },
+
+  "Akij Essentials Ltd.(Manufacruring)": {
+    custodian: "Fardan Hasan",
+    role: "Assistant Manager — Brand (AEL)",
+    submitted: "23 Nov 2026",
+    verdict: { text: "Gap", tone: "warn" },
+    headline: "Category-level gaps from premium pricing and uneven sales focus: Mustard Oil is at 70% value / 71% volume (on track for 100% by month-end) and Tea is trailing (80% expected), while AMS, Chinigura Rice and Oil are priced above the market.",
+    reason: [
+      { text: "AKIJ Essentials SKUs are priced higher than competing market products — AMS, Chinigura Rice and Oil.", dept: "Pricing / Commercial" },
+      { text: "The Sales team needs more focus on these products and increased market coverage.", dept: "Sales" }
+    ],
+    initiatives: [
+      { text: "Price revisions have been made.", dept: "Commercial / Pricing" },
+      { text: "Daily monitoring of SRs and ZSMs is being conducted.", dept: "Sales" },
+      { text: "A consumer promo is running on Tea to help the sales team penetrate the market.", dept: "Marketing" }
+    ],
+    actions: [
+      "Atta-Maida-Suji (AMS) prices have been revised to support target achievement.",
+      "Propose a competitive price for Salt in line with the market to drive sales.",
+      "Conduct daily meetings with DSMs to review and follow up on sales performance."
+    ],
+    image: "AEL.png",
+    close: "Attached snapshot — 'AEL MTD Sales Performance & Revenue Status (23-11-26)': channel-wise MTD performance across 8 channels (Bulk Flour & Dal, Rice Bulk, Consumer, Corporate, Tender, Modern Trade, HORECA); overall value achievement 78%."
+  }
+};
+
+/* ---------- gap assessment rendering ---------- */
+let currentGap = Object.keys(GAP)[0] || '';
+
+function gapRank(r){
+  const g = GAP[r.name];
+  if(!g) return 4; // pending — no reply yet
+  const t = g.verdict ? g.verdict.tone : 'warn';
+  return {good:0, info:1, warn:2, bad:3}[t] ?? 2;
+}
+function renderGapSelect(){
+  const sel = document.getElementById('sbuSelect');
+  const rows = DATA.rows.slice().sort((a,b)=> gapRank(a)-gapRank(b) || a.sl-b.sl);
+  sel.innerHTML = rows.map(r=>{
+    const g = GAP[r.name];
+    const mark = g ? '✓  ' : '○  ';
+    return '<option value="'+esc(r.name)+'"'+(currentGap===r.name?' selected':'')+'>'+mark+esc(r.name)+'</option>';
+  }).join('');
+  const st = document.getElementById('gapStatus');
+  if(st){
+    const g = GAP[currentGap];
+    st.innerHTML = g ? '<span class="chip good sm">Submitted</span>' : '<span class="chip grey sm">Pending</span>';
+  }
+}
+
+function renderGapBlock(title, badge, items, withDept){
+  const lis = items.map((it,i)=>{
+    const txt = typeof it==='string' ? it : it.text;
+    const dept = (withDept && it.dept) ? '<span class="chip info sm">'+esc(it.dept)+'</span>' : '';
+    return '<li><span class="bul">'+(i+1)+'.</span><span class="body">'+esc(txt)+' '+dept+'</span></li>';
+  }).join('');
+  return '<div class="gap-block"><h4>'+title+' <span class="num-badge">'+badge+'</span></h4><ul>'+lis+'</ul></div>';
+}
+
+function renderGapPanel(){
+  const panel = document.getElementById('gapPanel');
+  if(!currentGap){ panel.innerHTML = ''; return; }
+  const r = DATA.rows.find(x=>x.name===currentGap);
+  if(!r){ panel.innerHTML = '<div class="pending-note">SBU not found.</div>'; return; }
+  const g = GAP[r.name];
+  if(!g){
+    panel.innerHTML = '<div class="pending-note"><b style="color:var(--ink)">'+esc(r.name)+'</b><br>Awaiting brand custodian submission.</div>';
+    return;
+  }
+  const metrics = [
+    {l:'Budget (Nov)', v:moneyU(r.bud)},
+    {l:'Revised Forecast', v:moneyU(r.fc)},
+    {l:'Actual 01–22', v:moneyU(r.act)},
+    {l:'Achievement vs Budget', v:pct(r.achvBud)},
+    {l:'Gap to Forecast', v:moneyU(r.fc - r.act)}
+  ];
+  const v = g.verdict;
+  const chip = v ? '<span class="chip '+v.tone+'">'+esc(v.text)+'</span>' : '<span class="chip good">Submitted</span>';
+  let html = '<div class="gap-head"><div><h3 style="font-size:16px">'+esc(r.name)+'</h3>'+
+    '<div class="who">Custodian: <b style="color:var(--ink2)">'+esc(g.custodian)+'</b> · '+esc(g.role)+' · <span class="tiny">'+esc(g.submitted)+'</span></div></div>'+
+    chip+'</div>';
+  html += '<div class="metric-strip">'+metrics.map(m=>'<div class="metric"><div class="l">'+m.l+'</div><div class="v num">'+m.v+'</div></div>').join('')+'</div>';
+  if(g.image) html += '<div class="gap-img"><img src="'+esc(g.image)+'" alt="'+esc(r.name)+' performance snapshot"><div class="tiny">Attachment: '+esc(g.image)+'</div></div>';
+  html += '<div class="callout">'+esc(g.headline)+'</div>';
+  html += renderGapBlock('Reason for the gap', '1', g.reason, true);
+  html += renderGapBlock('Initiatives already taken', '2', g.initiatives, true);
+  html += renderGapBlock('Next 8-day action plan — Marketing', '3', g.actions, false);
+  if(g.close) html += '<div class="tiny gap-close">'+esc(g.close)+'</div>';
+  panel.innerHTML = html;
+}
+
+document.getElementById('sbuSelect').addEventListener('change', e=>{
+  currentGap = e.target.value;
+  renderGapSelect();
+  renderGapPanel();
+});
+
+/* ---------- boot ---------- */
+function renderAll(){
+  renderKPI(); renderBanner(); renderGapDecomp(); renderDist(); renderPareto(); renderLists();
+  renderFindings(); renderTable(); renderGapSelect(); renderGapPanel(); tick();
+  document.getElementById('footNote').textContent = DATA.meta.foot;
+}
+document.querySelectorAll('#unitSeg button').forEach(b=>b.classList.toggle('on', b.dataset.u===UNIT));
+renderAll();
+setInterval(tick, 30000);
+</script>
+</body>
+</html>
