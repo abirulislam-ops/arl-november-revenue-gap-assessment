@@ -3,3 +3,6 @@ AKIJ_Resource_SBU_MTD_Dashboard.html
 
 # Source attachments not referenced by the site
 AEL.pdf
+
+# Local helper (machine-specific)
+deploy.bat
