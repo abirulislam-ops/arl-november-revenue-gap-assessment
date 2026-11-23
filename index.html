@@ -1008,7 +1008,7 @@ function gapRank(r){
 }
 function renderGapSelect(){
   const sel = document.getElementById('sbuSelect');
-  const rows = DATA.rows.filter(r=>GAP[r.name]).sort((a,b)=> gapRank(a)-gapRank(b) || a.sl-b.sl);
+  const rows = DATA.rows.filter(r=>GAP[r.name]).sort((a,b)=> (b.act-a.act) || a.sl-b.sl);
   sel.innerHTML = rows.map(r=>
     '<option value="'+esc(r.name)+'"'+(currentGap===r.name?' selected':'')+'>✓  '+esc(r.name)+'</option>'
   ).join('');

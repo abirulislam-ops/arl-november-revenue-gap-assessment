@@ -8,3 +8,6 @@ AEL.pdf
 deploy.bat
 
 .vercel
+
+# Log files
+*.log
