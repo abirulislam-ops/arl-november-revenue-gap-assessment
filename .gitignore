@@ -6,3 +6,5 @@ AEL.pdf
 
 # Local helper (machine-specific)
 deploy.bat
+
+.vercel
