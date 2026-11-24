@@ -329,8 +329,8 @@ footer b{color:var(--ink2)}
     <div class="toolbar-row">
       <input type="text" id="q" placeholder="Search SBU, code or SBU head…" style="max-width:320px">
       <select id="sortBy" style="max-width:230px">
-        <option value="achv">Sort: Achievement vs budget (high → low)</option>
-        <option value="gap">Sort: Revenue gap, BDT (high → low)</option>
+        <option value="achv">Sort: Achievement vs forecast (high → low)</option>
+        <option value="gap">Sort: Gap to forecast, BDT (high → low)</option>
         <option value="act">Sort: Actual revenue (high → low)</option>
         <option value="bud">Sort: Budget size (high → low)</option>
         <option value="coll">Sort: Collection achievement (high → low)</option>
@@ -353,8 +353,8 @@ footer b{color:var(--ink2)}
             <th data-k="bud">Budget</th>
             <th data-k="fc">Forecast</th>
             <th data-k="act">Actual 01–22</th>
-            <th data-k="achv">Achv vs Budget</th>
-            <th data-k="gap">Gap to Budget</th>
+            <th data-k="achv">Achievement vs Forecast</th>
+            <th data-k="gap">Gap to Forecast</th>
             <th data-k="projachv">Proj. Achv</th>
             <th data-k="rr">Run-rate Needed</th>
             <th data-k="coll">Collection</th>
@@ -550,17 +550,18 @@ function renderTable(){
   let rows = DATA.rows.slice();
   const q = (document.getElementById('q').value||'').toLowerCase();
   if(q) rows = rows.filter(r=>(r.name+' '+r.code+' '+r.head).toLowerCase().includes(q));
-  if(FILTER==='above') rows = rows.filter(r=>r.achvBud!==null && r.achvBud>=1);
-  if(FILTER==='risk') rows = rows.filter(r=>r.achvBud!==null && r.achvBud<0.5);
+  if(FILTER==='above') rows = rows.filter(r=>r.achvFc!==null && r.achvFc>=1);
+  if(FILTER==='risk') rows = rows.filter(r=>r.achvFc!==null && r.achvFc<0.5);
   if(FILTER==='plan') rows = rows.filter(r=>r.chips.some(c=>c.dept==='Planning'||c.label.indexOf('No plan')>=0||c.label.indexOf('Plan cut')>=0));
   if(FILTER==='coll') rows = rows.filter(r=>r.cachv!==null && r.cachv<0.45);
 
   const key = SORTKEY;
-  const KEYMAP = {achv:'achvBud', rank:'sl', gap:'gap', act:'act', bud:'bud', fc:'fc',
+  const KEYMAP = {achv:'achvFc', rank:'sl', gap:'gapFc', act:'act', bud:'bud', fc:'fc',
                   proj:'proj', projachv:'projAchv', rr:'rrMult', coll:'cachv', rec:'rec', name:'name'};
   const val = r => {
     const k = KEYMAP[key] || key;
     if(k==='name') return r.name;
+    if(k==='gapFc') return r.fc - r.act;
     const v = r[k];
     return (v===null||v===undefined) ? -1e18 : v;
   };
@@ -582,9 +583,9 @@ function renderTable(){
       '<td class="num">'+money(r.bud)+'</td>'+
       '<td class="num dim">'+money(r.fc)+'</td>'+
       '<td class="num"><b>'+money(r.act)+'</b></td>'+
-      '<td><div class="achvwrap"><div class="achvbar"><i style="width:'+Math.min(100,(r.achvBud||0)*100)+'%;background:'+achvColor(r.achvBud)+'"></i></div>'+
-        '<span class="num" style="color:'+achvColor(r.achvBud)+';font-weight:700;min-width:46px">'+pct(r.achvBud)+'</span></div></td>'+
-      '<td class="num '+(r.gap>0?'neg':'pos')+'">'+money(r.gap)+'</td>'+
+      '<td><div class="achvwrap"><div class="achvbar"><i style="width:'+Math.min(100,(r.achvFc||0)*100)+'%;background:'+achvColor(r.achvFc)+'"></i></div>'+
+        '<span class="num" style="color:'+achvColor(r.achvFc)+';font-weight:700;min-width:46px">'+pct(r.achvFc)+'</span></div></td>'+
+      '<td class="num '+(r.fc-r.act>0?'neg':'pos')+'">'+money(r.fc-r.act)+'</td>'+
       '<td class="num" style="color:'+achvColor(r.projAchv)+'">'+pct(r.projAchv)+'</td>'+
       '<td class="num">'+(r.rrMult===null?'—':r.rrMult.toFixed(2)+'×')+'</td>'+
       '<td class="num" style="color:'+(r.cachv===null?'#b9c7db':achvColor(r.cachv))+'">'+pct(r.cachv)+'</td>'+
@@ -597,7 +598,7 @@ function renderTable(){
   const t = DATA.totals;
   tb.innerHTML += '<tr class="tot"><td></td><td class="l">Group total — '+rows.length+' line'+(rows.length===1?'':'s')+'</td>'+
     '<td class="num">'+money(t.bud)+'</td><td class="num">'+money(t.fc)+'</td><td class="num">'+money(t.act)+'</td>'+
-    '<td class="num">'+pct(t.achvBud)+'</td><td class="num neg">'+money(t.bud-t.act)+'</td>'+
+    '<td class="num">'+pct(t.achvFc)+'</td><td class="num neg">'+money(t.fc-t.act)+'</td>'+
     '<td class="num">'+pct(t.projAchv)+'</td><td class="num">'+t.mult.toFixed(2)+'×</td><td class="num">'+pct(t.cachv)+'</td>'+
     '<td class="num">'+money(t.rec)+'</td><td class="l"></td></tr>';
 }
@@ -1042,7 +1043,7 @@ function renderGapPanel(){
     {l:'Budget (Nov)', v:moneyU(r.bud)},
     {l:'Revised Forecast', v:moneyU(r.fc)},
     {l:'Actual 01–22', v:moneyU(r.act)},
-    {l:'Achievement vs Budget', v:pct(r.achvBud)},
+    {l:'Achievement vs Forecast', v:pct(r.achvFc)},
     {l:'Gap to Forecast', v:moneyU(r.fc - r.act)}
   ];
   const v = g.verdict;
